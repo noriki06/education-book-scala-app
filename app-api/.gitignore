@@ -14,3 +14,8 @@ target
 RUNNING_PID
 /project/.sbtserver
 /project/.sbtserver.lock
+# Metals / Bloop の自動生成ファイルを Git 管理から外す
+.bloop/
+.metals/
+project/metals.sbt
+**/project/metals.sbt
