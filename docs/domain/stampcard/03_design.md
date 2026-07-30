@@ -19,6 +19,7 @@
 ## EntityModel
 ### <スタンプ>
 
+```scala
 case class Stamp(
   id:        Option[Id],                   // 管理 ID（永続化前は None）
   userId:    User.Id,                      // どの会員のスタンプか
@@ -40,6 +41,8 @@ object Stamp:
   enum Status(val code: Short) extends EnumStatus[Short]:
     case IS_ACTIVE   extends Status(code =  1) // 有効
     case IS_INACTIVE extends Status(code = -1) // 無効（キャンセル・未受け取り）
+
+```
 
 **ここで型が語っていること**
 - idのNoneは未保存、usedAtのNoneは未使用と意味合いが違う
@@ -166,4 +169,6 @@ object Stamp:
 
 #### 「無料特典」をエンティティにするか
 判断は作らない。有効スタンプが 10 個以上あるかで判定する。
-スタンプが失効したら特典も消えていいから
+エンティティにすれば「10 個たまった」という権利確定の事実を保存でき、その後スタンプが失効しても特典を残せる。
+しかし要件定義で「特典もスタンプと同様、最後の注文から1年で使えなくなる」と確認しているため、
+スタンプが失効したら特典も消えて良いのでエンティティにはしない
