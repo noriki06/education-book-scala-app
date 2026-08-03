@@ -48,12 +48,15 @@
 新しく名前を付けるのは、`Order.Status` に追加する区分値 1 つだけ。既存の 5 つと並べて確認する。
 
 ```
-IS_RECEIVED       受付
-IS_COOKING        調理中
-IS_READY          受取準備完了
-IS_DELIVERED      受渡し完了
-IS_CANCELED       キャンセル
-IS_NOT_PICKED_UP  未受け取り（今回追加）
+IS_CANCELED_BY_USER       会員側のキャンセル(-1)
+IS_CANCELED_BY_SHOP       店舗側のキャンセル(-2)（今回追加）
+IS_NOT_PICKED_UP  未受け取り(-3)（今回追加）
+
+IS_RECEIVED       受付(100)
+IS_COOKING        調理中(200)
+IS_READY          受取準備完了(300)
+IS_DELIVERED      受渡し完了(400)
+
 ```
 
 既存 5 つの英語名は仮。実際の `Order.scala` を確認して揃える。
@@ -94,3 +97,10 @@ IS_NOT_PICKED_UP  未受け取り（今回追加）
 
 基準はあくまで「誰が日常的に書き換えるか」で、
 同じ人が別々の性質のデータを触るなら、1つの画面が複数のコンテキストにまたがる。
+
+
+## キャンセル時の表示（ユーザー、店舗）についての変更点が発生
+
+Orderのエンティティにキャセルについて会員側と店舗側のキャンセル理由を入れるフィールドを追加
+型はStringで自由記載できるように
+（enumStatusで選択できるようにする方が負担が減るかも）
