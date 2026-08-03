@@ -31,7 +31,7 @@
   <text x="54" y="468" font-size="11" fill="#334155">状態（受付 〜 受け渡し済み）</text>
 
   <!-- ================= スタンプカード ================= -->
-  <rect x="450" y="60" width="300" height="115" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
+  <rect x="450" y="60" width="300" height="160" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
   <rect x="450" y="60" width="300" height="34" rx="6" fill="#16a34a"/>
   <text x="464" y="76" font-size="12" font-weight="bold" fill="#ffffff">スタンプカード</text>
   <text x="464" y="89" font-size="9" fill="#dcfce7">StampCard</text>
@@ -39,30 +39,31 @@
   <text x="464" y="118" font-size="11" fill="#334155">スタンプカード ID</text>
   <text x="464" y="140" font-size="11" fill="#334155">会員 ID</text>
   <text x="464" y="162" font-size="11" fill="#334155">有効期限</text>
+  <text x="464" y="184" font-size="11" fill="#334155">交換に使った注文 ID</text>
+  <text x="464" y="206" font-size="11" fill="#334155">使用済み日時</text>
 
   <!-- ================= スタンプ ================= -->
-  <rect x="450" y="250" width="300" height="152" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
-  <rect x="450" y="250" width="300" height="34" rx="6" fill="#16a34a"/>
-  <text x="464" y="266" font-size="12" font-weight="bold" fill="#ffffff">スタンプ</text>
-  <text x="464" y="279" font-size="9" fill="#dcfce7">Stamp</text>
-  <text x="738" y="266" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
-  <text x="464" y="308" font-size="11" fill="#334155">スタンプ ID</text>
-  <text x="464" y="330" font-size="11" fill="#334155">スタンプカード ID</text>
-  <text x="464" y="352" font-size="11" fill="#334155">注文 ID</text>
-  <text x="464" y="374" font-size="11" fill="#334155">店舗 ID</text>
-  <text x="464" y="396" font-size="11" fill="#334155">付与日時 / 使用済み日時</text>
+  <rect x="450" y="270" width="300" height="130" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
+  <rect x="450" y="270" width="300" height="34" rx="6" fill="#16a34a"/>
+  <text x="464" y="286" font-size="12" font-weight="bold" fill="#ffffff">スタンプ</text>
+  <text x="464" y="299" font-size="9" fill="#dcfce7">Stamp</text>
+  <text x="738" y="286" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
+  <text x="464" y="328" font-size="11" fill="#334155">スタンプ ID</text>
+  <text x="464" y="350" font-size="11" fill="#334155">スタンプカード ID</text>
+  <text x="464" y="372" font-size="11" fill="#334155">注文 ID</text>
+  <text x="464" y="394" font-size="11" fill="#334155">店舗 ID / 付与日時</text>
 
   <!-- ================= relations ================= -->
   <path d="M270,104 H360 V118 H446" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
-  <text x="356" y="98" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : 1</text>
+  <text x="356" y="98" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
 
-  <path d="M600,175 V250" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
-  <text x="612" y="218" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
+  <path d="M600,220 V270" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="612" y="250" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
 
-  <path d="M270,274 H360 V374 H446" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <path d="M270,274 H360 V394 H446" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
   <text x="356" y="268" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
 
-  <path d="M270,434 H400 V352 H446" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <path d="M270,434 H400 V372 H446" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
   <text x="396" y="428" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : 1</text>
 
   <!-- ================= 対象外 ================= -->
@@ -74,6 +75,6 @@
   <!-- ================= note ================= -->
   <rect x="40" y="545" width="800" height="60" rx="8" fill="#fffbeb" stroke="#d97706"/>
   <text x="58" y="565" font-size="11" font-weight="bold" fill="#92400e">この図で確認するのは「どこに何があって、いくつ繋がるか」だけです</text>
-  <text x="58" y="582" font-size="11" fill="#92400e">有効期限はスタンプカードが持ち、判定はカード 1 件で終わります。スタンプごとの失効は見ません。</text>
-  <text x="58" y="599" font-size="11" fill="#92400e">日時が必須か任意か、使用済みをどう表すかは、このあとの EntityModel で定義します。</text>
+  <text x="58" y="582" font-size="11" fill="#92400e">1 枚のカードにスタンプは 10 個まで。満杯・期限切れになると、次のスタンプは新しいカードに押されます。</text>
+  <text x="58" y="599" font-size="11" fill="#92400e">有効期限も使用済み日時もカードが持つため、スタンプ 1 件ずつの失効は見ません。</text>
 </svg>
