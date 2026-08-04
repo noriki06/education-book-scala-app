@@ -51,7 +51,7 @@
   <text x="464" y="328" font-size="11" fill="#334155">スタンプ ID</text>
   <text x="464" y="350" font-size="11" fill="#334155">スタンプカード ID</text>
   <text x="464" y="372" font-size="11" fill="#334155">注文 ID</text>
-  <text x="464" y="394" font-size="11" fill="#334155">店舗 ID / 付与日時</text>
+  <text x="464" y="394" font-size="11" fill="#334155">店舗 ID（付与日時は createdAt）</text>
 
   <!-- ================= relations ================= -->
   <path d="M270,104 H360 V118 H446" fill="none" stroke="#7c3aed" stroke-width="1.6"/>

@@ -23,7 +23,7 @@
 case class StampCard(
   id:          Option[Id],                   // 管理 ID（永続化前は None）
   userId:      User.Id,                      // どの会員のカードか（User と *:1）
-  expiredAt:   LocalDate,                    // このカードの有効期限。付与のたびに「その日 ＋ 1年」へ更新
+  expiredAt:   LocalDate,                    // このカードの有効期限。付与のたびに「その日 ＋ 1年」へ更新（満杯になると確定）
   usedOrderId: Option[Order.Id] = None,      // このカードを特典交換に使った注文。未使用なら None
   usedAt:      Option[LocalDateTime] = None, // 特典交換に使用した日時。未使用なら None
   updatedAt:   LocalDateTime = Now,          // データ更新日
@@ -44,9 +44,8 @@ case class Stamp(
   stampCardId: StampCard.Id,        // どのカードに押されたか（StampCard と *:1）
   orderId:     Order.Id,            // どの注文で得たか（Order と 1:1）
   shopId:      Shop.Id,             // どの店舗での注文か（集計用。判定には使わない）
-  stampedAt:   LocalDateTime,       // 付与日時。受け渡し完了の日時
   updatedAt:   LocalDateTime = Now, // データ更新日
-  createdAt:   LocalDateTime = Now  // データ作成日
+  createdAt:   LocalDateTime = Now  // データ作成日 ＝ 付与日時（受け渡し完了の時刻）
 ) extends EntityModel[Id]
 
 object Stamp:
@@ -64,7 +63,8 @@ object Stamp:
 - `Stamp` は `userId` を持ちません。`stampCardId` からたどれるので、両方持つと二重管理になります
 - `Stamp` は有効期限を持ちません。期限はカード単位で一律なので、`StampCard` が持ちます
 - 有効スタンプ数を持ちません。期限内かつ未使用のカードに属するスタンプを数えれば求まります
-- `stampedAt` は `LocalDateTime`。同じ日に複数得たときの順序を保ち、問い合わせで「何時にもらったか」を答えるためです
+- 付与日時の専用カラムを持ちません。スタンプは受け渡し完了の瞬間にしか作られないので、`createdAt` と必ず同じ値になります
+- その `createdAt` は `LocalDateTime`。同じ日に複数得たときの順序を保ち、問い合わせで「何時にもらったか」を答えられます
 - `expiredAt` は `LocalDate`。「その日いっぱいは使える」という業務感覚に合わせ、日で判定します
 - 交換した商品を持ちません。商品券型（ハンバーガー1つと交換）なので、選んだ商品は `OrderItem` にあります
 - 無料特典の有効期限を別に持ちません。満杯のカードが特典そのものなので、`expiredAt` が両方を表します。
@@ -73,6 +73,8 @@ object Stamp:
 **型では守れない決めごと**
 
 - `Stamp.orderId` は一意。1つの注文に対してスタンプは1個までしか作れません
+- `Stamp.createdAt` が付与日時。**レコードを後から作り直してはいけません。**
+  作り直すと付与日時が変わり、有効期限の起点がズレます
 - 1枚のカードに属するスタンプは **10件まで**。満杯になったら次の注文では新しいカードを作ります
 - `usedOrderId` と `usedAt` は必ず両方埋まるか、両方 `None`。片方だけの状態は業務上ありえません
 - `usedAt` を書き込めるのは、スタンプが10件揃っていて期限内のカードだけです
@@ -96,7 +98,7 @@ object Stamp:
 
 `Stamp`（カード 13 の分）
 
-| stampCardId | orderId | stampedAt |
+| stampCardId | orderId | createdAt（＝付与日時） |
 |---|---|---|
 | 13 | 1120 | 2026-07-20 12:35 |
 | 13 | 1131 | 2026-07-28 19:02 |
@@ -209,6 +211,17 @@ object Stamp:
 復活が起こりえない。1枚 ＝ 10マスの台紙という紙の運用にも一致する。
 
 代償として、押す先のカードを毎回決める処理と、「1枚10件まで」という型で守れない制約が増えた。
+
+#### 付与日時を専用のカラムで持つか、`createdAt` で足りるか
+
+判断は `createdAt` で足りる。専用のカラムは作らない。
+
+スタンプは受け渡し完了の瞬間にしか作られない。付与のタイミングとレコード作成のタイミングが
+常に一致するため、専用カラムを足しても `createdAt` と同じ値が入るだけになる。
+
+代償は、業務上の意味（付与日時）を技術的な監査カラムに載せたこと。
+データ移行や手動付与でレコードを作り直すと `createdAt` が動き、有効期限の起点がズレる。
+そうした運用が発生した時点で、`stampedAt` を分けて持つ形に戻す。
 
 #### 満杯になったカードの期限を延長し続けるか
 
