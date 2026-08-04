@@ -23,7 +23,7 @@
   <text x="74" y="229" font-size="9" fill="#dcfce7">Reward</text>
   <text x="278" y="216" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
   <text x="74" y="253" font-size="10.5" fill="#334155">リワード ID / 名称 / 配布期間</text>
-  <text x="74" y="272" font-size="10.5" fill="#334155">必要スタンプ数</text>
+  <text x="74" y="272" font-size="10.5" fill="#334155">必要スタンプ数 / 発行上限</text>
   <text x="74" y="291" font-size="10.5" fill="#334155">カードの有効期間 / 特典の延長期間</text>
   <text x="74" y="310" font-size="10.5" fill="#334155">対象商品 ID / 特典の種類 / 割引額</text>
 
@@ -65,8 +65,8 @@
   <text x="878" y="251" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
   <text x="559" y="290" font-size="11" fill="#334155">リワードカード ID</text>
   <text x="559" y="310" font-size="11" fill="#334155">会員 ID / リワード ID</text>
-  <text x="559" y="330" font-size="11" fill="#334155">有効期限</text>
-  <text x="559" y="350" font-size="10.5" fill="#334155">状態（貯め中 / 満杯 / 使用済み / 期限切れ）</text>
+  <text x="559" y="330" font-size="11" fill="#334155">有効期限 / 中断日</text>
+  <text x="559" y="350" font-size="10.5" fill="#334155">状態（収集中 / 特典獲得 / 使用済み / 期限切れ）</text>
   <text x="559" y="370" font-size="11" fill="#334155">使った注文 ID / 使用日時</text>
 
   <!-- スタンプ -->
@@ -101,8 +101,9 @@
   <text x="466" y="627" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : 1</text>
 
   <!-- ===================== 対象外 ===================== -->
-  <rect x="545" y="570" width="345" height="30" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="5 4"/>
-  <text x="559" y="590" font-size="10.5" fill="#64748b">データを持たないもの … 有効スタンプ数、特典の有効期限</text>
+  <rect x="545" y="570" width="345" height="48" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="5 4"/>
+  <text x="559" y="588" font-size="10.5" fill="#64748b">データを持たないもの … 有効スタンプ数（件数を数える）</text>
+  <text x="559" y="606" font-size="10.5" fill="#64748b">特典の有効期限（カードの有効期限 ＋ 延長期間）</text>
 
   <!-- ===================== note ===================== -->
   <rect x="330" y="650" width="580" height="30" rx="8" fill="#fffbeb" stroke="#d97706"/>
