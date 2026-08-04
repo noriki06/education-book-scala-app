@@ -87,20 +87,21 @@ IS_PICKED_UP          受け渡し完了         (400)
 code 値はマイナス側が終了（無効）、プラス側が進行中。
 100 刻みにしたのは、将来の状態を間に挟めるようにするため。
 
+候補の点表と却下理由（`IS_DELIVERED` を採らなかった理由など）は [naming.md](naming.md) に切り出した。
+
 ### 属性
 
-| 候補 | ① | ② | ③ | ④ | ⑤ | ⑥ | 総合 | 却下理由 |
-|---|---|---|---|---|---|---|---|---|
-| **cancelReasonForUser / cancelReasonForShop** | 9 | 9 | 10 | 9 | 7 | 8 | **9** | 採用 |
-| cancelReasonByUser / cancelReasonByShop | 9 | 9 | 10 | 8 | 7 | 8 | 7 | by は「誰が書いたか」に読める。今回は表示先なので意味が逆 |
-| userCancelReason / shopCancelReason | 9 | 9 | **3** | 9 | 8 | 8 | 6 | 名前順で u と s が離れ、補完でも並ばない |
-| cancelReasonPublic / cancelReasonInternal | 8 | 8 | 10 | **5** | 7 | 9 | 6 | 店長は「内部用の理由」とは言わない |
-| cancelNoteForUser / cancelNoteForShop | 7 | 8 | 10 | 6 | 7 | 8 | 6 | note は備考に読め、理由という意味が薄い |
+```
+cancelReasonForUser   会員に表示するキャンセル理由   ← 今回追加
+cancelReasonForShop   店舗に表示するキャンセル理由   ← 今回追加
+```
 
-**判断：** `cancelReasonForUser` / `cancelReasonForShop`。
+`cancel` で始まる2つが隣り合い、IDE 補完で両方出るので片方の書き忘れが減る。
 
-**決定打は ①。** この2つは表示先で分かれるので、`by`（誰が書いたか）ではなく `for`（誰に見せるか）。
-1文字の違いで意味が逆になるため、記録に残しておかないと後から `by` に直されかねない。
+**前置詞に注意。** 区分値の `IS_CANCELED_BY_SHOP` の `BY` は「誰が取り消したか」、
+属性の `cancelReasonForShop` の `FOR` は「誰に見せるか」。同じ `Order` の中で意味が違う。
+
+候補の点表と却下理由は [naming.md](naming.md) に切り出した。
 
 ③ も効いている。`cancel` で始まる2つが隣り合い、IDE 補完で両方出るので片方の書き忘れが減る。
 `userCancelReason` は英語として自然だが、名前順で `u` と `s` が離れる。
