@@ -17,17 +17,19 @@
   <text x="74" y="166" font-size="11" fill="#334155">配布期間</text>
   <text x="74" y="186" font-size="11" fill="#334155">必要スタンプ数</text>
   <text x="74" y="206" font-size="11" fill="#334155">カードの有効期間 / 延長期間</text>
-  <text x="74" y="226" font-size="11" fill="#334155">特典の種類 / 割引額</text>
+  <text x="74" y="226" font-size="11" fill="#334155">対象商品 ID / 特典の種類 / 割引額</text>
 
   <!-- 商品 -->
-  <rect x="300" y="90" width="100" height="148" rx="6" fill="#fefce8" stroke="#ca8a04"/>
-  <rect x="300" y="90" width="100" height="34" rx="6" fill="#ca8a04"/>
-  <text x="312" y="106" font-size="12" font-weight="bold" fill="#ffffff">商品</text>
-  <text x="312" y="119" font-size="9" fill="#fef9c3">MenuItem</text>
-  <text x="312" y="146" font-size="11" fill="#334155">商品 ID</text>
-  <text x="312" y="166" font-size="11" fill="#334155">商品名</text>
-  <text x="312" y="192" font-size="10.5" font-weight="bold" fill="#854d0e">特典対象か</text>
-  <text x="312" y="208" font-size="9.5" fill="#854d0e">← 属性を追加</text>
+  <rect x="310" y="120" width="100" height="88" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+  <rect x="310" y="120" width="100" height="34" rx="6" fill="#94a3b8"/>
+  <text x="322" y="136" font-size="12" font-weight="bold" fill="#ffffff">商品</text>
+  <text x="322" y="149" font-size="9" fill="#e2e8f0">MenuItem</text>
+  <text x="322" y="178" font-size="11" fill="#334155">商品 ID</text>
+  <text x="322" y="198" font-size="11" fill="#334155">商品名 / 価格</text>
+
+  <!-- Reward *:1 MenuItem -->
+  <path d="M280,164 H306" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="293" y="158" text-anchor="middle" font-size="10" font-weight="bold" fill="#5b21b6">*:1</text>
 
   <!-- ================= udb / shop / sales（既存） ================= -->
   <rect x="40" y="290" width="230" height="86" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
@@ -67,7 +69,7 @@
   <text x="524" y="361" font-size="11" fill="#334155">リワードカード ID</text>
   <text x="524" y="381" font-size="11" fill="#334155">会員 ID / リワード ID</text>
   <text x="524" y="401" font-size="11" fill="#334155">有効期限</text>
-  <text x="524" y="421" font-size="11" fill="#334155">使用状態 / 使った注文 ID / 使用日時</text>
+  <text x="524" y="421" font-size="11" fill="#334155">状態 / 使った注文 ID / 使用日時</text>
 
   <!-- スタンプ -->
   <rect x="510" y="480" width="300" height="105" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
