@@ -20,9 +20,9 @@
 
 ## EntityModel
 
-### <リワード（種別）>
+### <リワード（Reward）>
 
-本部が決めるマスタ。今回は作成のみを扱う（→ 付録A）。
+種別を定めるマスタ。本部が決める。今回は作成のみを扱う（→ 付録A）。
 
 ```scala
 case class Reward(
@@ -51,7 +51,7 @@ object Reward:
     case IS_AMOUNT_OFF extends BonusType(code = 2) // 金額割引（円）。discountAmount を使う
 ```
 
-### <リワードカード>
+### <リワードカード（RewardCard）>
 
 ```scala
 case class RewardCard(
@@ -79,7 +79,7 @@ object RewardCard:
     case IS_USED       extends Status(code = 300) // 使用済み
 ```
 
-### <スタンプ>
+### <スタンプ（RewardCardStamp）>
 
 ```scala
 case class RewardCardStamp(
