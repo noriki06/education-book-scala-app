@@ -1,114 +1,110 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" font-family="sans-serif" font-size="14">
-  <rect x="0" y="0" width="900" height="700" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 700" width="940" font-family="sans-serif" font-size="14">
+  <rect x="0" y="0" width="940" height="700" fill="#ffffff"/>
 
-  <text x="450" y="30" text-anchor="middle" font-weight="bold" fill="#1e293b">ER 図 — リワードまわりのデータの繋がり</text>
+  <text x="470" y="30" text-anchor="middle" font-weight="bold" fill="#1e293b">ER 図 — リワードまわりのデータの繋がり</text>
 
-  <!-- ================= common コンテキスト ================= -->
-  <rect x="40" y="55" width="380" height="200" rx="8" fill="none" stroke="#cbd5e1" stroke-dasharray="6 4"/>
-  <text x="56" y="76" font-size="11" font-weight="bold" fill="#64748b">common（本部が管理するマスタ）</text>
+  <!-- ===================== common ===================== -->
+  <rect x="30" y="55" width="440" height="280" rx="8" fill="none" stroke="#cbd5e1" stroke-dasharray="6 4"/>
+  <text x="46" y="76" font-size="11" font-weight="bold" fill="#64748b">common（本部が管理するマスタ）</text>
 
-  <!-- リワード -->
-  <rect x="60" y="90" width="220" height="148" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
-  <rect x="60" y="90" width="220" height="34" rx="6" fill="#16a34a"/>
-  <text x="74" y="106" font-size="12" font-weight="bold" fill="#ffffff">リワード（種別）</text>
-  <text x="74" y="119" font-size="9" fill="#dcfce7">Reward</text>
-  <text x="268" y="106" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
-  <text x="74" y="146" font-size="11" fill="#334155">リワード ID / 名称</text>
-  <text x="74" y="166" font-size="11" fill="#334155">配布期間</text>
-  <text x="74" y="186" font-size="11" fill="#334155">必要スタンプ数</text>
-  <text x="74" y="206" font-size="11" fill="#334155">カードの有効期間 / 延長期間</text>
-  <text x="74" y="226" font-size="11" fill="#334155">対象商品 ID / 特典の種類 / 割引額</text>
+  <!-- 商品（上） -->
+  <rect x="60" y="88" width="230" height="84" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+  <rect x="60" y="88" width="230" height="34" rx="6" fill="#94a3b8"/>
+  <text x="74" y="104" font-size="12" font-weight="bold" fill="#ffffff">商品</text>
+  <text x="74" y="117" font-size="9" fill="#e2e8f0">MenuItem</text>
+  <text x="278" y="104" text-anchor="end" font-size="10" fill="#ffffff">既存</text>
+  <text x="74" y="144" font-size="11" fill="#334155">商品 ID</text>
+  <text x="74" y="163" font-size="11" fill="#334155">商品名 / 価格</text>
 
-  <!-- 商品 -->
-  <rect x="310" y="120" width="100" height="88" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
-  <rect x="310" y="120" width="100" height="34" rx="6" fill="#94a3b8"/>
-  <text x="322" y="136" font-size="12" font-weight="bold" fill="#ffffff">商品</text>
-  <text x="322" y="149" font-size="9" fill="#e2e8f0">MenuItem</text>
-  <text x="322" y="178" font-size="11" fill="#334155">商品 ID</text>
-  <text x="322" y="198" font-size="11" fill="#334155">商品名 / 価格</text>
+  <!-- リワード（下） -->
+  <rect x="60" y="200" width="230" height="120" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
+  <rect x="60" y="200" width="230" height="34" rx="6" fill="#16a34a"/>
+  <text x="74" y="216" font-size="12" font-weight="bold" fill="#ffffff">リワード（種別）</text>
+  <text x="74" y="229" font-size="9" fill="#dcfce7">Reward</text>
+  <text x="278" y="216" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
+  <text x="74" y="253" font-size="10.5" fill="#334155">リワード ID / 名称 / 配布期間</text>
+  <text x="74" y="272" font-size="10.5" fill="#334155">必要スタンプ数</text>
+  <text x="74" y="291" font-size="10.5" fill="#334155">カードの有効期間 / 特典の延長期間</text>
+  <text x="74" y="310" font-size="10.5" fill="#334155">対象商品 ID / 特典の種類 / 割引額</text>
 
-  <!-- Reward *:1 MenuItem -->
-  <path d="M280,164 H306" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
-  <text x="293" y="158" text-anchor="middle" font-size="10" font-weight="bold" fill="#5b21b6">*:1</text>
+  <!-- Reward *:1 MenuItem（common の中で縦に結ぶ） -->
+  <path d="M175,200 V172" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="187" y="190" font-size="11" font-weight="bold" fill="#5b21b6">*:1</text>
 
-  <!-- ================= udb / shop / sales（既存） ================= -->
-  <rect x="40" y="290" width="230" height="86" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
-  <rect x="40" y="290" width="230" height="34" rx="6" fill="#94a3b8"/>
-  <text x="54" y="306" font-size="12" font-weight="bold" fill="#ffffff">会員</text>
-  <text x="54" y="319" font-size="9" fill="#e2e8f0">User</text>
-  <text x="258" y="306" text-anchor="end" font-size="10" fill="#ffffff">既存</text>
-  <text x="54" y="348" font-size="11" fill="#334155">会員 ID</text>
-  <text x="54" y="368" font-size="11" fill="#334155">公開用識別子</text>
+  <!-- ===================== 既存（udb / shop / sales） ===================== -->
+  <rect x="60" y="380" width="230" height="66" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+  <rect x="60" y="380" width="230" height="34" rx="6" fill="#94a3b8"/>
+  <text x="74" y="396" font-size="12" font-weight="bold" fill="#ffffff">会員</text>
+  <text x="74" y="409" font-size="9" fill="#e2e8f0">User</text>
+  <text x="278" y="396" text-anchor="end" font-size="10" fill="#ffffff">既存</text>
+  <text x="74" y="433" font-size="11" fill="#334155">会員 ID / 公開用識別子</text>
 
-  <rect x="40" y="420" width="230" height="86" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
-  <rect x="40" y="420" width="230" height="34" rx="6" fill="#94a3b8"/>
-  <text x="54" y="436" font-size="12" font-weight="bold" fill="#ffffff">店舗</text>
-  <text x="54" y="449" font-size="9" fill="#e2e8f0">Shop</text>
-  <text x="258" y="436" text-anchor="end" font-size="10" fill="#ffffff">既存</text>
-  <text x="54" y="478" font-size="11" fill="#334155">店舗 ID</text>
-  <text x="54" y="498" font-size="11" fill="#334155">店名</text>
+  <rect x="60" y="490" width="230" height="66" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+  <rect x="60" y="490" width="230" height="34" rx="6" fill="#94a3b8"/>
+  <text x="74" y="506" font-size="12" font-weight="bold" fill="#ffffff">店舗</text>
+  <text x="74" y="519" font-size="9" fill="#e2e8f0">Shop</text>
+  <text x="278" y="506" text-anchor="end" font-size="10" fill="#ffffff">既存</text>
+  <text x="74" y="543" font-size="11" fill="#334155">店舗 ID / 店名</text>
 
-  <rect x="40" y="550" width="230" height="86" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
-  <rect x="40" y="550" width="230" height="34" rx="6" fill="#94a3b8"/>
-  <text x="54" y="566" font-size="12" font-weight="bold" fill="#ffffff">注文</text>
-  <text x="54" y="579" font-size="9" fill="#e2e8f0">Order</text>
-  <text x="258" y="566" text-anchor="end" font-size="10" fill="#ffffff">既存</text>
-  <text x="54" y="608" font-size="11" fill="#334155">注文 ID</text>
-  <text x="54" y="628" font-size="11" fill="#334155">状態（受付 〜 受け渡し済み）</text>
+  <rect x="60" y="600" width="230" height="66" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+  <rect x="60" y="600" width="230" height="34" rx="6" fill="#94a3b8"/>
+  <text x="74" y="616" font-size="12" font-weight="bold" fill="#ffffff">注文</text>
+  <text x="74" y="629" font-size="9" fill="#e2e8f0">Order</text>
+  <text x="278" y="616" text-anchor="end" font-size="10" fill="#ffffff">既存</text>
+  <text x="74" y="653" font-size="11" fill="#334155">注文 ID / 状態</text>
 
-  <!-- ================= sales コンテキスト（今回追加） ================= -->
-  <rect x="480" y="270" width="390" height="330" rx="8" fill="none" stroke="#cbd5e1" stroke-dasharray="6 4"/>
-  <text x="496" y="291" font-size="11" font-weight="bold" fill="#64748b">sales（会員の注文まわり）</text>
+  <!-- ===================== sales（今回追加） ===================== -->
+  <rect x="520" y="200" width="390" height="410" rx="8" fill="none" stroke="#cbd5e1" stroke-dasharray="6 4"/>
+  <text x="536" y="221" font-size="11" font-weight="bold" fill="#64748b">sales（会員の注文まわり）</text>
 
   <!-- リワードカード -->
-  <rect x="510" y="305" width="300" height="130" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
-  <rect x="510" y="305" width="300" height="34" rx="6" fill="#16a34a"/>
-  <text x="524" y="321" font-size="12" font-weight="bold" fill="#ffffff">リワードカード</text>
-  <text x="524" y="334" font-size="9" fill="#dcfce7">RewardCard</text>
-  <text x="798" y="321" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
-  <text x="524" y="361" font-size="11" fill="#334155">リワードカード ID</text>
-  <text x="524" y="381" font-size="11" fill="#334155">会員 ID / リワード ID</text>
-  <text x="524" y="401" font-size="11" fill="#334155">有効期限</text>
-  <text x="524" y="421" font-size="11" fill="#334155">状態 / 使った注文 ID / 使用日時</text>
+  <rect x="545" y="235" width="345" height="150" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
+  <rect x="545" y="235" width="345" height="34" rx="6" fill="#16a34a"/>
+  <text x="559" y="251" font-size="12" font-weight="bold" fill="#ffffff">リワードカード</text>
+  <text x="559" y="264" font-size="9" fill="#dcfce7">RewardCard</text>
+  <text x="878" y="251" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
+  <text x="559" y="290" font-size="11" fill="#334155">リワードカード ID</text>
+  <text x="559" y="310" font-size="11" fill="#334155">会員 ID / リワード ID</text>
+  <text x="559" y="330" font-size="11" fill="#334155">有効期限</text>
+  <text x="559" y="350" font-size="10.5" fill="#334155">状態（貯め中 / 満杯 / 使用済み / 期限切れ）</text>
+  <text x="559" y="370" font-size="11" fill="#334155">使った注文 ID / 使用日時</text>
 
   <!-- スタンプ -->
-  <rect x="510" y="480" width="300" height="105" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
-  <rect x="510" y="480" width="300" height="34" rx="6" fill="#16a34a"/>
-  <text x="524" y="496" font-size="12" font-weight="bold" fill="#ffffff">スタンプ</text>
-  <text x="524" y="509" font-size="9" fill="#dcfce7">RewardCardStamp</text>
-  <text x="798" y="496" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
-  <text x="524" y="536" font-size="11" fill="#334155">スタンプ ID</text>
-  <text x="524" y="556" font-size="11" fill="#334155">リワードカード ID / 注文 ID</text>
-  <text x="524" y="576" font-size="11" fill="#334155">店舗 ID（付与日時は createdAt）</text>
+  <rect x="545" y="440" width="345" height="105" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
+  <rect x="545" y="440" width="345" height="34" rx="6" fill="#16a34a"/>
+  <text x="559" y="456" font-size="12" font-weight="bold" fill="#ffffff">スタンプ</text>
+  <text x="559" y="469" font-size="9" fill="#dcfce7">RewardCardStamp</text>
+  <text x="878" y="456" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
+  <text x="559" y="496" font-size="11" fill="#334155">スタンプ ID</text>
+  <text x="559" y="516" font-size="11" fill="#334155">リワードカード ID / 注文 ID</text>
+  <text x="559" y="536" font-size="11" fill="#334155">店舗 ID（付与日時は createdAt）</text>
 
-  <!-- ================= relations ================= -->
-  <!-- Reward 1:* RewardCard -->
-  <path d="M170,238 V275 H440 V370 H506" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
-  <text x="452" y="290" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
+  <!-- ===================== relations ===================== -->
+  <!-- Reward 1:* RewardCard（common の右端から） -->
+  <path d="M290,260 H400 V290 H541" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="396" y="254" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
 
   <!-- User 1:* RewardCard -->
-  <path d="M270,333 H400 V390 H506" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
-  <text x="396" y="327" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
+  <path d="M290,413 H440 V330 H541" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="436" y="407" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
 
   <!-- RewardCard 1:* Stamp -->
-  <path d="M660,435 V480" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
-  <text x="672" y="463" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
+  <path d="M717,385 V440" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="729" y="418" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
 
   <!-- Shop 1:* Stamp -->
-  <path d="M270,463 H360 V556 H506" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
-  <text x="356" y="457" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
+  <path d="M290,523 H400 V536 H541" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="396" y="517" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
 
   <!-- Order 1:1 Stamp -->
-  <path d="M270,593 H430 V576 H506" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
-  <text x="426" y="587" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : 1</text>
+  <path d="M290,633 H470 V516 H541" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="466" y="627" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : 1</text>
 
-  <!-- ================= 対象外 ================= -->
-  <rect x="510" y="612" width="300" height="66" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="5 4"/>
-  <text x="524" y="632" font-size="11" font-weight="bold" fill="#64748b">データを持たないもの</text>
-  <text x="524" y="651" font-size="10.5" fill="#64748b">有効スタンプ数 … 件数を数えて求める</text>
-  <text x="524" y="669" font-size="10.5" fill="#64748b">特典の有効期限 … カードの有効期限 ＋ 延長期間</text>
+  <!-- ===================== 対象外 ===================== -->
+  <rect x="545" y="570" width="345" height="30" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="5 4"/>
+  <text x="559" y="590" font-size="10.5" fill="#64748b">データを持たないもの … 有効スタンプ数、特典の有効期限</text>
 
-  <!-- ================= note ================= -->
-  <rect x="40" y="655" width="440" height="30" rx="8" fill="#fffbeb" stroke="#d97706"/>
-  <text x="58" y="674" font-size="10.5" fill="#92400e">参照は sales → common の一方向。マスタは注文を知らない。</text>
+  <!-- ===================== note ===================== -->
+  <rect x="330" y="650" width="580" height="30" rx="8" fill="#fffbeb" stroke="#d97706"/>
+  <text x="348" y="669" font-size="10.5" fill="#92400e">既存モデルへの属性追加はない。参照は sales → common の一方向。</text>
 </svg>

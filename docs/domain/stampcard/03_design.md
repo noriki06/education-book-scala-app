@@ -85,8 +85,8 @@ object RewardCard:
 case class RewardCardStamp(
   id:           Option[Id],          // 管理 ID（永続化前は None）
   rewardCardId: RewardCard.Id,       // どのカードに押されたか（RewardCard と *:1）
-  orderId:      Order.Id,            // どの注文で得たか（Order と 1:1）
   shopId:       Shop.Id,             // どの店舗での注文か（集計用。判定には使わない）
+  orderId:      Order.Id,            // どの注文で得たか（Order と 1:1）
   updatedAt:    LocalDateTime = Now, // データ更新日
   createdAt:    LocalDateTime = Now  // データ作成日 ＝ 付与日時（受け渡し完了の時刻）
 ) extends EntityModel[Id]
