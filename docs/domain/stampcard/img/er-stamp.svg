@@ -4,33 +4,33 @@
   <text x="470" y="30" text-anchor="middle" font-weight="bold" fill="#1e293b">ER 図 — リワードまわりのデータの繋がり</text>
 
   <!-- ===================== common ===================== -->
-  <rect x="30" y="55" width="440" height="280" rx="8" fill="none" stroke="#cbd5e1" stroke-dasharray="6 4"/>
+  <rect x="30" y="55" width="460" height="280" rx="8" fill="none" stroke="#cbd5e1" stroke-dasharray="6 4"/>
   <text x="46" y="76" font-size="11" font-weight="bold" fill="#64748b">common（本部が管理する定義）</text>
 
-  <!-- 商品（上） -->
-  <rect x="60" y="88" width="230" height="84" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
-  <rect x="60" y="88" width="230" height="34" rx="6" fill="#94a3b8"/>
-  <text x="74" y="104" font-size="12" font-weight="bold" fill="#ffffff">商品</text>
-  <text x="74" y="117" font-size="9" fill="#e2e8f0">MenuItem</text>
-  <text x="278" y="104" text-anchor="end" font-size="10" fill="#ffffff">既存</text>
-  <text x="74" y="144" font-size="11" fill="#334155">商品 ID</text>
-  <text x="74" y="163" font-size="11" fill="#334155">商品名 / 価格</text>
+  <!-- 商品（左） -->
+  <rect x="50" y="90" width="150" height="84" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+  <rect x="50" y="90" width="150" height="34" rx="6" fill="#94a3b8"/>
+  <text x="64" y="106" font-size="12" font-weight="bold" fill="#ffffff">商品</text>
+  <text x="64" y="119" font-size="9" fill="#e2e8f0">MenuItem</text>
+  <text x="188" y="106" text-anchor="end" font-size="10" fill="#ffffff">既存</text>
+  <text x="64" y="146" font-size="11" fill="#334155">商品 ID</text>
+  <text x="64" y="165" font-size="11" fill="#334155">商品名 / 価格</text>
 
-  <!-- リワード（下） -->
-  <rect x="60" y="200" width="230" height="120" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
-  <rect x="60" y="200" width="230" height="34" rx="6" fill="#16a34a"/>
-  <text x="74" y="216" font-size="12" font-weight="bold" fill="#ffffff">リワード</text>
-  <text x="74" y="229" font-size="9" fill="#dcfce7">Reward</text>
-  <text x="278" y="216" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
-  <text x="74" y="253" font-size="10.5" fill="#334155">リワード ID / 名称 / 配布期間</text>
-  <text x="74" y="272" font-size="10.5" fill="#334155">必要スタンプ数 / 発行上限</text>
-  <text x="74" y="291" font-size="10.5" fill="#334155">カードの有効期間 / 特典の延長期間</text>
-  <text x="74" y="310" font-size="10.5" fill="#334155">対象商品 ID / 特典の種類 / 割引額</text>
+  <!-- 商品 1 : * リワード（横に並べ、多重度を隙間の両端に表記） -->
+  <path d="M200,132 H230" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="207" y="122" text-anchor="middle" font-size="11" font-weight="bold" fill="#5b21b6">1</text>
+  <text x="222" y="122" text-anchor="middle" font-size="11" font-weight="bold" fill="#5b21b6">*</text>
 
-  <!-- Reward *:1 MenuItem（common の中で縦に結ぶ。両端に多重度を分けて表記：上＝商品側が1、下＝リワード側が*） -->
-  <path d="M175,200 V172" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
-  <text x="181" y="180" font-size="11" font-weight="bold" fill="#5b21b6">1</text>
-  <text x="181" y="196" font-size="11" font-weight="bold" fill="#5b21b6">*</text>
+  <!-- リワード（右） -->
+  <rect x="230" y="90" width="240" height="130" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
+  <rect x="230" y="90" width="240" height="34" rx="6" fill="#16a34a"/>
+  <text x="244" y="106" font-size="12" font-weight="bold" fill="#ffffff">リワード</text>
+  <text x="244" y="119" font-size="9" fill="#dcfce7">Reward</text>
+  <text x="458" y="106" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
+  <text x="244" y="146" font-size="10.5" fill="#334155">リワード ID / 名称 / 配布期間</text>
+  <text x="244" y="165" font-size="10.5" fill="#334155">必要スタンプ数 / 発行上限</text>
+  <text x="244" y="184" font-size="10.5" fill="#334155">カードの有効期間 / 特典の延長期間</text>
+  <text x="244" y="203" font-size="10.5" fill="#334155">対象商品 ID / 特典の種類 / 割引額</text>
 
   <!-- ===================== 既存（udb / shop / sales） ===================== -->
   <rect x="60" y="380" width="230" height="66" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
@@ -81,9 +81,9 @@
   <text x="559" y="536" font-size="11" fill="#334155">店舗 ID（付与日時は createdAt）</text>
 
   <!-- ===================== relations ===================== -->
-  <!-- Reward 1:* RewardCard（common の右端から） -->
-  <path d="M290,260 H400 V290 H541" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
-  <text x="396" y="254" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
+  <!-- Reward 1:* RewardCard（リワードの右端から） -->
+  <path d="M470,155 H505 V290 H541" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="501" y="150" text-anchor="end" font-size="12" font-weight="bold" fill="#5b21b6">1 : *</text>
 
   <!-- User 1:* RewardCard -->
   <path d="M290,413 H440 V330 H541" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
