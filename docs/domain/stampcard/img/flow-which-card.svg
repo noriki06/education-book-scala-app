@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 870" width="840" font-family="sans-serif" font-size="14">
+  <rect x="0" y="0" width="840" height="870" fill="#ffffff"/>
+
+  <text x="420" y="26" text-anchor="middle" font-weight="bold" fill="#1e293b">どのカードに押すか</text>
+
+  <defs>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Start pill -->
+  <rect x="150" y="40" width="300" height="50" rx="25" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8"/>
+  <text x="300" y="69" text-anchor="middle" font-size="12.5" fill="#334155">商品受け渡し完了</text>
+  <text x="300" y="85" text-anchor="middle" font-size="10.5" fill="#64748b">（特典対象外を含む注文）</text>
+  <line x1="300" y1="90" x2="300" y2="128" stroke="#475569" stroke-width="1.6" marker-end="url(#arrow2)"/>
+
+  <!-- D1 decision box -->
+  <rect x="120" y="130" width="360" height="90" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8"/>
+  <text x="140" y="148" font-size="10" fill="#7c3aed">判定</text>
+  <text x="300" y="170" text-anchor="middle" font-size="12.5" fill="#334155">収集中カードが0枚 かつ</text>
+  <text x="300" y="190" text-anchor="middle" font-size="12.5" fill="#334155">中断中のカードがある？</text>
+
+  <!-- D1 いいえ：主経路を直進 -->
+  <line x1="300" y1="220" x2="300" y2="270" stroke="#475569" stroke-width="1.8"/>
+  <text x="270" y="250" text-anchor="end" font-size="11.5" fill="#64748b">いいえ</text>
+
+  <!-- D1 はい：右に分岐して処理し、合流 -->
+  <path d="M480,175 H560" fill="none" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow2)"/>
+  <text x="520" y="165" text-anchor="middle" font-size="11.5" fill="#16a34a" font-weight="600">はい</text>
+  <rect x="560" y="130" width="240" height="90" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.8"/>
+  <text x="680" y="165" text-anchor="middle" font-size="12" fill="#334155">中断中のうち suspendedAt</text>
+  <text x="680" y="183" text-anchor="middle" font-size="12" fill="#334155">が最新のものを再開</text>
+  <text x="680" y="201" text-anchor="middle" font-size="12" fill="#334155">→ 収集中に設定</text>
+  <path d="M680,220 V270 H300" fill="none" stroke="#475569" stroke-width="1.8"/>
+
+  <!-- merge dot 1 -->
+  <circle cx="300" cy="270" r="4.5" fill="#475569"/>
+  <line x1="300" y1="270" x2="300" y2="310" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow2)"/>
+
+  <!-- D2 decision box -->
+  <rect x="120" y="312" width="360" height="118" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8"/>
+  <text x="140" y="330" font-size="10" fill="#7c3aed">判定</text>
+  <text x="300" y="350" text-anchor="middle" font-size="12.5" fill="#334155">期間限定リワードが開催中 かつ</text>
+  <text x="300" y="370" text-anchor="middle" font-size="12.5" fill="#334155">発行済み枚数 &lt; 上限 かつ</text>
+  <text x="300" y="390" text-anchor="middle" font-size="12.5" fill="#334155">会員が参加を選んだ？</text>
+
+  <!-- D2 いいえ -->
+  <line x1="300" y1="430" x2="300" y2="480" stroke="#475569" stroke-width="1.8"/>
+  <text x="270" y="460" text-anchor="end" font-size="11.5" fill="#64748b">いいえ</text>
+
+  <!-- D2 はい -->
+  <path d="M480,371 H560" fill="none" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow2)"/>
+  <text x="520" y="361" text-anchor="middle" font-size="11.5" fill="#16a34a" font-weight="600">はい</text>
+  <rect x="560" y="312" width="240" height="118" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.8"/>
+  <text x="680" y="342" text-anchor="middle" font-size="12" fill="#334155">収集中カードがあれば中断</text>
+  <text x="680" y="360" text-anchor="middle" font-size="12" fill="#334155">期間限定カードを新規作成</text>
+  <text x="680" y="378" text-anchor="middle" font-size="12" fill="#334155">→ 収集中に設定</text>
+  <text x="680" y="396" text-anchor="middle" font-size="10.5" fill="#64748b">（スタンプは0個から）</text>
+  <path d="M680,430 V480 H300" fill="none" stroke="#475569" stroke-width="1.8"/>
+
+  <!-- merge dot 2 -->
+  <circle cx="300" cy="480" r="4.5" fill="#475569"/>
+  <line x1="300" y1="480" x2="300" y2="520" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow2)"/>
+
+  <!-- Process box -->
+  <rect x="120" y="522" width="360" height="72" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="1.8"/>
+  <text x="300" y="550" text-anchor="middle" font-size="12.5" fill="#334155">収集中カードにスタンプを1件記録</text>
+  <text x="300" y="570" text-anchor="middle" font-size="11" fill="#64748b">（無ければ通常リワードで新規作成）</text>
+
+  <line x1="300" y1="594" x2="300" y2="634" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow2)"/>
+
+  <!-- D3 decision box -->
+  <rect x="120" y="636" width="360" height="90" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8"/>
+  <text x="140" y="654" font-size="10" fill="#7c3aed">判定</text>
+  <text x="300" y="676" text-anchor="middle" font-size="12.5" fill="#334155">記録後の件数が</text>
+  <text x="300" y="696" text-anchor="middle" font-size="12.5" fill="#334155">必要スタンプ数に到達？</text>
+
+  <!-- D3 いいえ：そのまま終了へ -->
+  <line x1="300" y1="726" x2="300" y2="780" stroke="#475569" stroke-width="1.8"/>
+  <text x="270" y="756" text-anchor="end" font-size="11.5" fill="#64748b">いいえ</text>
+
+  <!-- D3 はい -->
+  <path d="M480,681 H560" fill="none" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow2)"/>
+  <text x="520" y="671" text-anchor="middle" font-size="11.5" fill="#16a34a" font-weight="600">はい</text>
+  <rect x="560" y="646" width="220" height="70" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.8"/>
+  <text x="670" y="676" text-anchor="middle" font-size="12" fill="#334155">state を IS_FILLED に更新</text>
+  <path d="M670,716 V780 H300" fill="none" stroke="#475569" stroke-width="1.8"/>
+
+  <!-- merge dot 3 -->
+  <circle cx="300" cy="780" r="4.5" fill="#475569"/>
+  <line x1="300" y1="780" x2="300" y2="816" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow2)"/>
+
+  <!-- End pill -->
+  <rect x="200" y="818" width="200" height="50" rx="25" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8"/>
+  <text x="300" y="848" text-anchor="middle" font-size="12.5" fill="#334155">処理終了</text>
+</svg>

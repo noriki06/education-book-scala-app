@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" width="900" font-family="sans-serif" font-size="14">
+  <rect x="0" y="0" width="900" height="400" fill="#ffffff"/>
+
+  <text x="450" y="26" text-anchor="middle" font-weight="bold" fill="#1e293b">中断スタック（後入れ先出し）のタイムライン</text>
+
+  <defs>
+    <marker id="arrow3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- lane labels -->
+  <text x="8" y="106" font-size="12" font-weight="600" fill="#334155">カード A</text>
+  <text x="8" y="120" font-size="10" fill="#64748b">通常スタンプ</text>
+  <text x="8" y="196" font-size="12" font-weight="600" fill="#334155">カード B</text>
+  <text x="8" y="210" font-size="10" fill="#64748b">サマースタンプ</text>
+  <text x="8" y="286" font-size="12" font-weight="600" fill="#334155">カード C</text>
+  <text x="8" y="300" font-size="10" fill="#64748b">誕生日クーポン</text>
+
+  <!-- time gridlines -->
+  <g stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3 4">
+    <line x1="120" y1="70" x2="120" y2="330"/>
+    <line x1="290" y1="70" x2="290" y2="330"/>
+    <line x1="460" y1="70" x2="460" y2="330"/>
+    <line x1="630" y1="70" x2="630" y2="330"/>
+    <line x1="800" y1="70" x2="800" y2="330"/>
+  </g>
+  <g font-size="10.5" fill="#64748b" text-anchor="middle">
+    <text x="120" y="58">t0：Aを作成</text>
+    <text x="290" y="58">t1：サマー参加</text>
+    <text x="460" y="58">t2：誕生日参加</text>
+    <text x="630" y="58">t3：Cが満杯</text>
+    <text x="800" y="58">t4：Bが満杯</text>
+  </g>
+
+  <!-- lane A: solid 120-290, dashed 290-800, solid 800-860 -->
+  <line x1="120" y1="100" x2="290" y2="100" stroke="#16a34a" stroke-width="8" stroke-linecap="round"/>
+  <line x1="290" y1="100" x2="800" y2="100" stroke="#94a3b8" stroke-width="6" stroke-dasharray="2 7" stroke-linecap="round"/>
+  <line x1="800" y1="100" x2="870" y2="100" stroke="#16a34a" stroke-width="8" stroke-linecap="round" marker-end="url(#arrow3)"/>
+  <text x="205" y="88" text-anchor="middle" font-size="9.5" fill="#64748b">収集中</text>
+  <text x="545" y="88" text-anchor="middle" font-size="9.5" fill="#64748b">中断中（積み重ね1段目）</text>
+  <text x="835" y="88" text-anchor="middle" font-size="9.5" fill="#64748b">再開</text>
+
+  <!-- lane B: solid 290-460, dashed 460-630, solid 630-800 -->
+  <line x1="290" y1="190" x2="460" y2="190" stroke="#16a34a" stroke-width="8" stroke-linecap="round"/>
+  <line x1="460" y1="190" x2="630" y2="190" stroke="#94a3b8" stroke-width="6" stroke-dasharray="2 7" stroke-linecap="round"/>
+  <line x1="630" y1="190" x2="800" y2="190" stroke="#16a34a" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="800" cy="190" r="5" fill="#64748b"/>
+  <text x="375" y="178" text-anchor="middle" font-size="9.5" fill="#64748b">収集中</text>
+  <text x="545" y="178" text-anchor="middle" font-size="9.5" fill="#64748b">中断中（積み重ね2段目）</text>
+  <text x="715" y="178" text-anchor="middle" font-size="9.5" fill="#64748b">再開（先に戻る）</text>
+
+  <!-- lane C: solid 460-630 -->
+  <line x1="460" y1="280" x2="630" y2="280" stroke="#16a34a" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="630" cy="280" r="5" fill="#64748b"/>
+  <text x="545" y="268" text-anchor="middle" font-size="9.5" fill="#64748b">収集中 → 満杯</text>
+
+  <!-- callouts -->
+  <text x="290" y="346" text-anchor="middle" font-size="10" fill="#334155">Aを中断／Bを新規作成</text>
+  <text x="460" y="346" text-anchor="middle" font-size="10" fill="#334155">Bを中断／Cを新規作成</text>
+  <text x="630" y="346" text-anchor="middle" font-size="10" fill="#334155">後入れ先出しで B が先に再開</text>
+  <text x="630" y="360" text-anchor="middle" font-size="9.5" fill="#64748b">（A ではなく）</text>
+  <text x="800" y="346" text-anchor="middle" font-size="10" fill="#334155">最後に残った A が再開</text>
+
+  <!-- legend -->
+  <line x1="330" y1="386" x2="360" y2="386" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
+  <text x="366" y="390" font-size="10.5" fill="#64748b">収集中</text>
+  <line x1="430" y1="386" x2="460" y2="386" stroke="#94a3b8" stroke-width="5" stroke-dasharray="2 6" stroke-linecap="round"/>
+  <text x="466" y="390" font-size="10.5" fill="#64748b">中断中</text>
+</svg>
