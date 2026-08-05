@@ -14,7 +14,7 @@ val ixiasVersion = if (release) "3.1.3" else "3.1.3-SNAPSHOT"
 
 val commonSettings = Seq(
   organization := "net.ixias",
-  scalaVersion := "3.8.4",
+  scalaVersion := "3.9.0-RC1",
   resolvers ++= Seq(
     "Typesafe Releases" at "https://repo.typesafe.com/typesafe/ivy-releases/",
     "Sonatype Release"  at "https://oss.sonatype.org/content/repositories/releases/",
