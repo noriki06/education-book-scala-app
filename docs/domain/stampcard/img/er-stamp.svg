@@ -27,9 +27,10 @@
   <text x="74" y="291" font-size="10.5" fill="#334155">カードの有効期間 / 特典の延長期間</text>
   <text x="74" y="310" font-size="10.5" fill="#334155">対象商品 ID / 特典の種類 / 割引額</text>
 
-  <!-- Reward *:1 MenuItem（common の中で縦に結ぶ） -->
+  <!-- Reward *:1 MenuItem（common の中で縦に結ぶ。両端に多重度を分けて表記：上＝商品側が1、下＝リワード側が*） -->
   <path d="M175,200 V172" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
-  <text x="187" y="190" font-size="11" font-weight="bold" fill="#5b21b6">*:1</text>
+  <text x="181" y="180" font-size="11" font-weight="bold" fill="#5b21b6">1</text>
+  <text x="181" y="196" font-size="11" font-weight="bold" fill="#5b21b6">*</text>
 
   <!-- ===================== 既存（udb / shop / sales） ===================== -->
   <rect x="60" y="380" width="230" height="66" rx="6" fill="#f8fafc" stroke="#94a3b8"/>

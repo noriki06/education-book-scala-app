@@ -157,7 +157,7 @@ case class RewardCardStamp(
    再開時に中断日数を加算する機会が永久に失われる。
 2. **発行済み枚数を数えるとき `state` で絞り込んではいけない。**
    `userId` と `rewardId` が一致する `RewardCard` の全件を数える（期限切れ・使用済みも含む）。
-   絞ると失効や交換のあとに期間限定の2枚目が作れてしまう。
+   絞ると失効や交換のあとに発行上限を超えるカードが作れてしまう。
 3. **`IS_FILLED` のカードを `expiredAt` だけで判定してはいけない。**
    特典が使えるのは `expiredAt` ＋ `bonusExtensionPeriod` まで。
 4. **収集中のカードを探すクエリには必ず `suspendedAt` が `None` の条件を付ける。**
