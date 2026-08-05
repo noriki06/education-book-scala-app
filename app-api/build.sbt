@@ -13,7 +13,7 @@ name         := "education-book-app-api"
 
 // ThisBuild scope so the flyway migration sub-projects inherit it too —
 // otherwise they fall back to sbt's own Scala 2.12.
-ThisBuild / scalaVersion := "3.9.0-RC1"
+ThisBuild / scalaVersion := "3.8.4"
 
 resolvers ++= Seq(
   "Typesafe Releases" at "https://repo.typesafe.com/typesafe/ivy-releases/",
