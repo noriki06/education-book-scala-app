@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 460" width="860" font-family="sans-serif" font-size="14">
   <rect x="0" y="0" width="860" height="460" fill="#ffffff"/>
 
-  <text x="430" y="26" text-anchor="middle" font-weight="bold" fill="#1e293b">RewardCard.state の遷移</text>
+  <text x="430" y="26" text-anchor="middle" font-weight="bold" fill="#1e293b">UserRewardCard.state の遷移</text>
 
   <defs>
     <marker id="arrow1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">

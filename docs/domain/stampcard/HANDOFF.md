@@ -13,11 +13,11 @@
 | 日本語 | クラス | テーブル | コンテキスト | 役割 |
 |---|---|---|---|---|
 | リワード | `Reward` | `common_reward` | common | カードの中身を定める定義。本部が管理 |
-| リワードカード | `RewardCard` | `sales_reward_card` | sales | 会員が持つ1枚。有効期限と状態を持つ |
-| スタンプ | `RewardCardStamp` | `sales_reward_card_stamp` | sales | 1枚に押された1個。追加専用の台帳 |
+| 会員リワードカード | `UserRewardCard` | `sales_user_reward_card` | sales | 会員が持つ1枚。有効期限と状態を持つ |
+| スタンプ | `UserRewardCardStamp` | `sales_user_reward_card_stamp` | sales | 1枚に押された1個。追加専用の台帳 |
 
-多重度は `Reward` 1:* `RewardCard` 1:* `RewardCardStamp`。
-`Reward` *:1 `MenuItem`、`User` 1:* `RewardCard`、`Order` 1:1 `RewardCardStamp`。
+多重度は `Reward` 1:* `UserRewardCard` 1:* `UserRewardCardStamp`。
+`Reward` *:1 `MenuItem`、`User` 1:* `UserRewardCard`、`Order` 1:1 `UserRewardCardStamp`。
 参照は `sales → common` の一方向。
 
 ## 2. エンティティモデル
@@ -26,8 +26,8 @@
 case class Reward(
   id:                   Option[Id],
   name:                 String,                // 例："通常スタンプ"、"サマースタンプ"
-  distributionStartAt:  Option[LocalDate],     // 配布期間の開始。None なら常に配布中
-  distributionEndAt:    Option[LocalDate],     // 配布期間の終了。None なら終了日なし
+  distStartAt:  Option[LocalDate],     // 配布期間の開始。None なら常に配布中
+  distEndAt:    Option[LocalDate],     // 配布期間の終了。None なら終了日なし
   requiredStampCount:   Int,                   // 満杯になる数
   cardValidityPeriod:   Period,                // カードができた日からの有効な長さ
   bonusExtensionPeriod: Period,                // 特典の有効期限を、カードの有効期限からどれだけ延ばすか
@@ -45,7 +45,7 @@ case class Reward(
 ```
 
 ```scala
-case class RewardCard(
+case class UserRewardCard(
   id:          Option[Id],
   userId:      User.Id,
   rewardId:    Reward.Id,                     // できた時点で決まり、以後変えない
@@ -66,9 +66,9 @@ case class RewardCard(
 ```
 
 ```scala
-case class RewardCardStamp(
+case class UserRewardCardStamp(
   id:           Option[Id],
-  rewardCardId: RewardCard.Id,
+  cardId: UserRewardCard.Id,
   orderId:      Order.Id,            // 一意
   shopId:       Shop.Id,             // 集計用。判定には使わない
   updatedAt:    LocalDateTime = Now,
@@ -91,7 +91,7 @@ case class RewardCardStamp(
 
 ## 4. 主要な判断と理由
 
-### リワードカードをエンティティにした
+### 会員リワードカードをエンティティにした
 
 期限が「一律」＝カードにつき1つの値なので、スタンプ全件に分散させると重複し、全件 UPDATE が要る。
 カードが持てば判定は1〜2列で終わる。
@@ -106,7 +106,7 @@ case class RewardCardStamp(
 
 交換は必要数まとめての1回。スタンプに持つと同じ値が複数行に重複する。
 1枚につき交換は1回なので、カードの属性に過不足なく収まる。
-結果 `RewardCardStamp` から `Option` が消え、追加専用の台帳になった。
+結果 `UserRewardCardStamp` から `Option` が消え、追加専用の台帳になった。
 
 ### 状態を4値の区分値にした
 
@@ -156,20 +156,20 @@ case class RewardCardStamp(
    日次バッチの対象から除く。除くと中断中に期限が来て `IS_EXPIRED` になり、
    再開時に中断日数を加算する機会が永久に失われる。
 2. **発行済み枚数を数えるとき `state` で絞り込んではいけない。**
-   `userId` と `rewardId` が一致する `RewardCard` の全件を数える（期限切れ・使用済みも含む）。
+   `userId` と `rewardId` が一致する `UserRewardCard` の全件を数える（期限切れ・使用済みも含む）。
    絞ると失効や交換のあとに発行上限を超えるカードが作れてしまう。
 3. **`IS_FILLED` のカードを `expiredAt` だけで判定してはいけない。**
    特典が使えるのは `expiredAt` ＋ `bonusExtensionPeriod` まで。
 4. **収集中のカードを探すクエリには必ず `suspendedAt` が `None` の条件を付ける。**
    忘れると中断中のカードにスタンプが押される。
-5. `RewardCardStamp` のレコードを後から作り直さない。付与日時が変わり、有効期限の起点がズレる。
+5. `UserRewardCardStamp` のレコードを後から作り直さない。付与日時が変わり、有効期限の起点がズレる。
 6. `state` と実体は必ず一致させる。更新経路を操作関数に絞り、個別に書き換えない。
 
 ---
 
 ## 6. 命名（`naming.md` の結論）
 
-`Reward` / `RewardCard` / `RewardCardStamp`。
+`Reward` / `UserRewardCard` / `UserRewardCardStamp`。
 
 **⑧ 親子の向き**という軸をレビュー指摘から追加した。3階層になると深い階層ほど名前が短くなりやすく、
 `Cart` < `CartItem` < `CartItemOption` と逆向きになると階層を取り違える。
@@ -186,7 +186,7 @@ case class RewardCardStamp(
 ### 呼称の禁止語（過去に事故った箇所）
 
 - `Reward` を指す語は **「リワード」だけ**。「マスタ」「種別」と書き分けない
-- `RewardCard` は **「リワードカード」だけ**。「保有カード」「スタンプカード」と書かない
+- `UserRewardCard` は **「会員リワードカード」だけ**。「保有カード」「スタンプカード」と書かない
 - ただし用語表の「言い換えない」欄そのものは禁止語を列挙する場所なので、置換してはいけない
 
 ---
@@ -234,4 +234,4 @@ case class RewardCardStamp(
 ## 10. いまの進捗
 
 設計4点セットは書き上がっている。**実装（Scala）はまだ1行も無い。**
-`Reward` を `edu/common`、`RewardCard` / `RewardCardStamp` を `edu/sales` に作るところから。
+`Reward` を `edu/common`、`UserRewardCard` / `UserRewardCardStamp` を `edu/sales` に作るところから。

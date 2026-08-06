@@ -10,13 +10,13 @@
 ## いまの状態
 
 設計4点セットは書き上がっている。**実装（Scala）はまだ1行も無い。**
-`Reward` / `RewardCard` / `RewardCardStamp` の3モデルを作るところから。
+`Reward` / `UserRewardCard` / `UserRewardCardStamp` の3モデルを作るところから。
 
 | 日本語 | クラス | テーブル | コンテキスト |
 |---|---|---|---|
 | リワード | `Reward` | `common_reward` | `common` |
-| リワードカード | `RewardCard` | `sales_reward_card` | `sales` |
-| スタンプ | `RewardCardStamp` | `sales_reward_card_stamp` | `sales` |
+| 会員リワードカード | `UserRewardCard` | `sales_user_reward_card` | `sales` |
+| スタンプ | `UserRewardCardStamp` | `sales_user_reward_card_stamp` | `sales` |
 
 参照は `sales` → `common` の一方向。`udb` には置けない（`Order.Id` を参照するため逆流する）。
 **既存モデル（`User` / `Shop` / `Order` / `MenuItem`）には属性を1つも足さない。**
@@ -24,7 +24,7 @@
 ## 呼称（過去に事故った箇所）
 
 `Reward` を指す語は **「リワード」だけ**。過去に「マスタ」「種別」と書き分けてしまい全面修正した。
-`RewardCard` は **「リワードカード」だけ**（`naming.md` で「保有カード」と書いていた時期がある）。
+`UserRewardCard` は **「会員リワードカード」だけ**（`naming.md` で「保有カード」と書いていた時期がある）。
 
 用語表の「言い換えない」欄に **マスタ / 種別 / 保有カード / スタンプカード** を登録済み。使わない。
 ただし**その欄そのものは禁止語を列挙する場所**なので、置換してはいけない。
@@ -48,14 +48,14 @@
    日次バッチの対象から除く。除くと中断中に期限が来て `IS_EXPIRED` になり、
    再開時に中断日数を加算する機会が永久に失われる
 2. **発行済み枚数を数えるとき `state` で絞り込んではいけない。**
-   `userId` と `rewardId` が一致する `RewardCard` の全件を数える（期限切れ・使用済みも含む）。
+   `userId` と `rewardId` が一致する `UserRewardCard` の全件を数える（期限切れ・使用済みも含む）。
    絞ると失効や交換のあとに発行上限を超えるカードが作れてしまう
 3. **`IS_FILLED` のカードを `expiredAt` だけで判定してはいけない。**
    特典が使えるのは `expiredAt` ＋ `Reward.bonusExtensionPeriod` まで。
    `expiredAt` 単独で切ると、獲得済みの特典を延長期間の分だけ早く失効させる
 4. **収集中のカードを探すクエリには必ず `suspendedAt` が `None` の条件を付ける。**
    忘れると中断中のカードにスタンプが押される
-5. **`RewardCardStamp` のレコードを後から作り直さない。**
+5. **`UserRewardCardStamp` のレコードを後から作り直さない。**
    `createdAt` が付与日時そのものなので、作り直すと有効期限の起点がズレる
 6. **`state` と実体は必ず一致させる。**
    更新経路を「スタンプを押す」「使用済みにする」「差し戻す」「失効させる」の操作関数に絞り、
