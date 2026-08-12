@@ -58,13 +58,13 @@
   <rect x="520" y="200" width="390" height="410" rx="8" fill="none" stroke="#cbd5e1" stroke-dasharray="6 4"/>
   <text x="536" y="221" font-size="11" font-weight="bold" fill="#64748b">sales（会員の注文まわり）</text>
 
-  <!-- 会員リワードカード -->
+  <!-- ユーザーリワードカード -->
   <rect x="545" y="235" width="345" height="150" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
   <rect x="545" y="235" width="345" height="34" rx="6" fill="#16a34a"/>
-  <text x="559" y="251" font-size="12" font-weight="bold" fill="#ffffff">会員リワードカード</text>
+  <text x="559" y="251" font-size="12" font-weight="bold" fill="#ffffff">ユーザーリワードカード</text>
   <text x="559" y="264" font-size="9" fill="#dcfce7">UserRewardCard</text>
   <text x="878" y="251" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
-  <text x="559" y="290" font-size="11" fill="#334155">会員リワードカード ID</text>
+  <text x="559" y="290" font-size="11" fill="#334155">ユーザーリワードカード ID</text>
   <text x="559" y="310" font-size="11" fill="#334155">会員 ID / リワード ID</text>
   <text x="559" y="330" font-size="11" fill="#334155">有効期限 / 中断日</text>
   <text x="559" y="350" font-size="10.5" fill="#334155">状態（収集中 / 特典獲得 / 使用済み / 期限切れ）</text>
@@ -77,7 +77,7 @@
   <text x="559" y="469" font-size="9" fill="#dcfce7">UserRewardCardStamp</text>
   <text x="878" y="456" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
   <text x="559" y="496" font-size="11" fill="#334155">スタンプ ID</text>
-  <text x="559" y="516" font-size="11" fill="#334155">会員リワードカード ID / 注文 ID</text>
+  <text x="559" y="516" font-size="11" fill="#334155">ユーザーリワードカード ID / 注文 ID</text>
   <text x="559" y="536" font-size="11" fill="#334155">店舗 ID（付与日時は createdAt）</text>
 
   <!-- ===================== relations ===================== -->

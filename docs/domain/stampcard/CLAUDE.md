@@ -15,7 +15,7 @@
 | 日本語 | クラス | テーブル | コンテキスト |
 |---|---|---|---|
 | リワード | `Reward` | `common_reward` | `common` |
-| 会員リワードカード | `UserRewardCard` | `sales_user_reward_card` | `sales` |
+| ユーザーリワードカード | `UserRewardCard` | `sales_user_reward_card` | `sales` |
 | スタンプ | `UserRewardCardStamp` | `sales_user_reward_card_stamp` | `sales` |
 
 参照は `sales` → `common` の一方向。`udb` には置けない（`Order.Id` を参照するため逆流する）。
@@ -24,7 +24,7 @@
 ## 呼称（過去に事故った箇所）
 
 `Reward` を指す語は **「リワード」だけ**。過去に「マスタ」「種別」と書き分けてしまい全面修正した。
-`UserRewardCard` は **「会員リワードカード」だけ**（`naming.md` で「保有カード」と書いていた時期がある）。
+`UserRewardCard` は **「ユーザーリワードカード」だけ**（`naming.md` で「保有カード」と書いていた時期がある）。
 
 用語表の「言い換えない」欄に **マスタ / 種別 / 保有カード / スタンプカード** を登録済み。使わない。
 ただし**その欄そのものは禁止語を列挙する場所**なので、置換してはいけない。

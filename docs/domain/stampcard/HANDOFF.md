@@ -13,7 +13,7 @@
 | 日本語 | クラス | テーブル | コンテキスト | 役割 |
 |---|---|---|---|---|
 | リワード | `Reward` | `common_reward` | common | カードの中身を定める定義。本部が管理 |
-| 会員リワードカード | `UserRewardCard` | `sales_user_reward_card` | sales | 会員が持つ1枚。有効期限と状態を持つ |
+| ユーザーリワードカード | `UserRewardCard` | `sales_user_reward_card` | sales | 会員が持つ1枚。有効期限と状態を持つ |
 | スタンプ | `UserRewardCardStamp` | `sales_user_reward_card_stamp` | sales | 1枚に押された1個。追加専用の台帳 |
 
 多重度は `Reward` 1:* `UserRewardCard` 1:* `UserRewardCardStamp`。
@@ -91,7 +91,7 @@ case class UserRewardCardStamp(
 
 ## 4. 主要な判断と理由
 
-### 会員リワードカードをエンティティにした
+### ユーザーリワードカードをエンティティにした
 
 期限が「一律」＝カードにつき1つの値なので、スタンプ全件に分散させると重複し、全件 UPDATE が要る。
 カードが持てば判定は1〜2列で終わる。
@@ -186,7 +186,7 @@ case class UserRewardCardStamp(
 ### 呼称の禁止語（過去に事故った箇所）
 
 - `Reward` を指す語は **「リワード」だけ**。「マスタ」「種別」と書き分けない
-- `UserRewardCard` は **「会員リワードカード」だけ**。「保有カード」「スタンプカード」と書かない
+- `UserRewardCard` は **「ユーザーリワードカード」だけ**。「保有カード」「スタンプカード」と書かない
 - ただし用語表の「言い換えない」欄そのものは禁止語を列挙する場所なので、置換してはいけない
 
 ---
