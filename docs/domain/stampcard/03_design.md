@@ -110,7 +110,9 @@ object UserRewardCard:
 ```scala
 case class UserRewardCardStamp(
   id:         Option[Id],          // 管理 ID（永続化前は None）
-  cardId:     UserRewardCard.Id,   // 主な親：どのカードに押されたか（UserRewardCard と *:1）
+  pId:        UserRewardCard.Id, // 主な親（parent ID）：どのカードに押されたか（UserRewardCard と *:1）。
+                                //   あえて cardId にせず汎用名にしている。将来 Card という別エンティティが
+                                //   来た場合に備え、その名前を空けておくため（→ naming.md）
   shopId:     Shop.Id,             // 広い群：どの店舗での注文か（集計用。判定には使わない）
   orderId:    Order.Id,            // 狭い群：どの注文で得たか（Order と 1:1）
   updatedAt:  LocalDateTime = Now, // データ更新日
@@ -127,7 +129,7 @@ object UserRewardCardStamp:
 
 - 有効スタンプ数を持たない。期限内かつ未使用のカードに属するスタンプを数えれば求まる
 - 付与日時の専用カラムを持たない。スタンプは受け渡し完了の瞬間にしか作られないので、`createdAt` と必ず同じ値になる
-- `UserRewardCardStamp` は `userId` を持たない（`cardId` からたどれる）。有効期限も持たない（カード単位で
+- `UserRewardCardStamp` は `userId` を持たない（`pId` からたどれる）。有効期限も持たない（カード単位で
   一律なので `UserRewardCard` が持つ）。区分値も持たない、追加専用の台帳
 
 **ここで型が語っていること ②　追加の要求で加わった分**
@@ -225,14 +227,14 @@ object UserRewardCardStamp:
 
 `UserRewardCardStamp`（カード15・16の分。抜粋）
 
-| cardId | orderId | createdAt（＝付与日時） |
+| pId | orderId | createdAt（＝付与日時） |
 |---|---|---|
 | 15 | 1098 | 2026-07-08 19:02 |
 | 15 | 1102 | 2026-07-09 12:14 |
 | 16 | 1131 | 2026-07-10 19:40 |
 | 16 | 1147 | 2026-07-14 12:35 |
 
-カード15と16が中断・再開の例。**カード15のスタンプ8個は1件も動かない**（`UserRewardCardStamp.cardId` を
+カード15と16が中断・再開の例。**カード15のスタンプ8個は1件も動かない**（`UserRewardCardStamp.pId` を
 書き換えないため）。再開したとき8個から続く。カード16は別のカードなので0個から始まる。
 この会員がいまスタンプを押せるのはカード16だけで、カード15は預かり状態にある。
 
@@ -319,7 +321,7 @@ object UserRewardCardStamp:
 `state` は問わない（期限切れ・使用済みも数える）。これが「発行上限を超えて作らせない」ことを保証している
 唯一の根拠なので、`state` で絞り込んではいけない。
 
-**中断したカードのスタンプは1件も動かさない。** `UserRewardCardStamp.cardId` は書き換えないため、
+**中断したカードのスタンプは1件も動かさない。** `UserRewardCardStamp.pId` は書き換えないため、
 再開したときに中断前の件数がそのまま残っている。8個貯めて中断したカードは、再開後も8個から続く。
 
 ### 有効スタンプ数の求め方

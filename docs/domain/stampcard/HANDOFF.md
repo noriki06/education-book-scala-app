@@ -68,7 +68,7 @@ case class UserRewardCard(
 ```scala
 case class UserRewardCardStamp(
   id:           Option[Id],
-  cardId: UserRewardCard.Id,
+  pId: UserRewardCard.Id,
   orderId:      Order.Id,            // 一意
   shopId:       Shop.Id,             // 集計用。判定には使わない
   updatedAt:    LocalDateTime = Now,
