@@ -89,15 +89,18 @@ stampcard のときと違い、**今回は業務語（発注者の語）がは�
 
 **クラス名**
 
-- User            ← 既存（udb）
+- User            ← 今回追加（udb）
 - Event           ← 今回追加（event）
 - EventEntry      ← 今回追加（event）
 
 **テーブル名**
 
-- udb_user        ← 既存
+- udb_user        ← 今回追加（8字）
 - event           ← 今回追加（5字。コンテキスト名と重ねない規則）
 - event_entry     ← 今回追加（11字）
+
+会員の名前（`User` / `udb_user`）は評価の対象にしない。雛形の認証機構と一体の形をそのまま
+採用するため（→ 03_design.md 付録B 判断12）。評価したのはイベント側の2モデルだけ。
 
 深い階層ほど名前が長くなる：`Event`(5) < `EventEntry`(10)。
 `Cart`(4) < `CartItem`(8) と同じ向き。名前順で `Event` と `EventEntry` が隣り合い、
