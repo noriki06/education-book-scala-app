@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" font-family="sans-serif" font-size="14">
   <rect x="0" y="0" width="900" height="560" fill="#ffffff"/>
 
-  <text x="450" y="30" text-anchor="middle" font-weight="bold" fill="#1e293b">ER 図 — 誘いまわりのデータの繋がり</text>
+  <text x="450" y="30" text-anchor="middle" font-weight="bold" fill="#1e293b">ER 図 — お誘いまわりのデータの繋がり</text>
 
   <!-- ===================== udb ===================== -->
   <rect x="30" y="60" width="280" height="180" rx="8" fill="none" stroke="#cbd5e1" stroke-dasharray="6 4"/>

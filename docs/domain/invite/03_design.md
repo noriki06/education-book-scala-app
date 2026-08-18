@@ -1,4 +1,4 @@
-# <誘い> — 詳細要件定義
+# <お誘い> — 詳細要件定義
 
 呼称は日本語も英語もそろえる（→ 02_analysis.md / naming.md）。
 追加の要求はまだ無いため、全体が①（当初の要求からある分）にあたる。
@@ -29,7 +29,7 @@
 
 ## ER 図
 
-![誘いまわりのER図。左のudbコンテキストに今回作る会員（User）があり、会員ID・公開用UUID・ログインID（メールアドレス）・表示名・アカウント状態を持つ。右のeventコンテキストに今回作るイベント（Event）と参加（EventEntry）がある。イベントはイベントID・立案者ID・内容・場所・成立人数・開始時刻（開催日を含む）・状態を持つ。参加は参加ID・イベントID・会員ID・取り消し日時を持つ。会員とイベントは1対多（立案者として）、会員と参加は1対多、イベントと参加は1対多。データを持たないものとして、参加者数（取り消し日時が空の参加を数えて求める）、開示済みかどうか（現在時刻が開始時刻の30分前を過ぎたかで求める）、確定型（成立人数が1かどうかで求める）、告知先（環境変数で持ち、モデルにしない）を注記している。参照はevent→udbの一方向で、3モデルとも今回作る](./img/er-invite.svg)
+![お誘いまわりのER図。左のudbコンテキストに今回作る会員（User）があり、会員ID・公開用UUID・ログインID（メールアドレス）・表示名・アカウント状態を持つ。右のeventコンテキストに今回作るイベント（Event）と参加（EventEntry）がある。イベントはイベントID・立案者ID・内容・場所・成立人数・開始時刻（開催日を含む）・状態を持つ。参加は参加ID・イベントID・会員ID・取り消し日時を持つ。会員とイベントは1対多（立案者として）、会員と参加は1対多、イベントと参加は1対多。データを持たないものとして、参加者数（取り消し日時が空の参加を数えて求める）、開示済みかどうか（現在時刻が開始時刻の30分前を過ぎたかで求める）、確定型（成立人数が1かどうかで求める）、告知先（環境変数で持ち、モデルにしない）を注記している。参照はevent→udbの一方向で、3モデルとも今回作る](./img/er-invite.svg)
 
 ## EntityModel
 
@@ -71,15 +71,15 @@ object User:
 
 ```scala
 case class Event(
-  id:                 Option[Id],              // 管理 ID（永続化前は None）
-  plannerId:          User.Id,                 // 立案者（User と *:1）。画面には永久に出さない（→ 付録B）
-  title:              String,                  // 内容（例："ランチ"、"スマブラ大会"）。自由記述（→ 付録B）
-  place:              Option[String] = None,   // 場所。自由記述・任意
-  requiredEntryCount: Int,                     // 成立人数。立案者を含む頭数。1 なら作った瞬間に成立（確定型）
-  startAt:            LocalDateTime,           // 開始時刻（開催日を含む。未来日も可）。開示・締切・流れの基準
-  state:              Status = Status.IS_OPEN, // イベントの状態（区分値、→ 付録B）
-  updatedAt:          LocalDateTime = Now,     // データ更新日
-  createdAt:          LocalDateTime = Now      // データ作成日
+  id:                 Option[Id],                    // 管理 ID（永続化前は None）
+  plannerId:          User.Id,                       // 立案者（User と *:1）。画面には永久に出さない（→ 付録B）
+  title:              String,                        // 内容（例："ランチ"、"スマブラ大会"）。自由記述（→ 付録B）
+  place:              Option[String] = None,         // 場所。自由記述・任意
+  requiredEntryCount: Int,                           // 成立人数。立案者を含む頭数。1 なら作った瞬間に成立（確定型）
+  startAt:            LocalDateTime,                 // 開始時刻（開催日を含む。未来日も可）。開示・締切・流れの基準
+  state:              Status = Status.IS_RECRUITING, // イベントの状態（区分値、→ 付録B）
+  updatedAt:          LocalDateTime = Now,           // データ更新日
+  createdAt:          LocalDateTime = Now            // データ作成日
 ) extends EntityModel[Id]
 
 object Event:
@@ -89,10 +89,10 @@ object Event:
 
   /** イベントの状態 */
   enum Status(val code: Short) extends EnumStatus[Short]:
-    case IS_CANCELED  extends Status(code = -200) // 取り消された（開示前に立案者が参加を取り消した）
-    case IS_FAILED    extends Status(code = -100) // 流れた（開始時刻までに成立しなかった／開示前の人数割れ）
-    case IS_OPEN      extends Status(code =  100) // 募集中
-    case IS_CONFIRMED extends Status(code =  200) // 成立
+    case IS_CANCELED   extends Status(code = -200) // 取り消された（開示前に立案者が参加を取り消した）
+    case IS_FAILED     extends Status(code = -100) // 流れた（開始時刻までに成立しなかった／開示前の人数割れ）
+    case IS_RECRUITING extends Status(code =  100) // 募集中
+    case IS_CONFIRMED  extends Status(code =  200) // 成立
 ```
 
 ### <参加（EventEntry）>
@@ -128,7 +128,7 @@ object EventEntry:
   成立人数1なら `IS_CONFIRMED` で作る（確定型）
 - `state` の更新は「押す」「取り消す」「時刻で締める」の3つの操作関数に絞る。
   **成立しているかの正は `state`。** 参加者数から数え直さない（→ 判断1）
-- 「参加」を押せるのは `IS_OPEN` / `IS_CONFIRMED` で、開始時刻より前のイベントだけ
+- 「参加」を押せるのは `IS_RECRUITING` / `IS_CONFIRMED` で、開始時刻より前のイベントだけ
 - `requiredEntryCount`（1以上）と `plannerId` は作成後に変更しない
 - `startAt` は開催日を含む日時。当日でも未来日でもよいが、**立案者が1つに決める**（候補日は持たない → 判断11）
 
@@ -141,7 +141,7 @@ object EventEntry:
 | 21 | A | 今日ランチ | 3 | 12:00 | IS_CONFIRMED | A が作成 → B・C が押して3人で成立 |
 | 22 | B | スマブラ大会 | 1 | 19:00 | IS_CONFIRMED | 確定型。**作った瞬間から成立** |
 | 23 | C | 飲み | 4 | 19:30 | IS_FAILED | 2人までしか集まらず、開始時刻が来て流れた |
-| 24 | D | 朝ランニング | 2 | 8/23 07:00 | IS_OPEN | **5日後の未来日イベント**。日付を指定して募集中 |
+| 24 | D | 朝ランニング | 2 | 8/23 07:00 | IS_RECRUITING | **5日後の未来日イベント**。日付を指定して募集中 |
 
 `EventEntry`（イベント21の分）
 
@@ -160,10 +160,10 @@ B が迷った履歴（行102・104）はそのまま残るが、画面に出る
 
 | 遷移 | きっかけ |
 |---|---|
-| `IS_OPEN` → `IS_CONFIRMED` | 参加者数が成立人数に達した（成立の投稿と同時） |
+| `IS_RECRUITING` → `IS_CONFIRMED` | 参加者数が成立人数に達した（成立の投稿と同時） |
 | `IS_CONFIRMED` → `IS_FAILED` | **開示前**の取り消しで成立人数を割った（流れたの投稿と同時） |
-| `IS_OPEN` → `IS_FAILED` | 開始時刻が来ても成立しなかった |
-| `IS_OPEN` / `IS_CONFIRMED` → `IS_CANCELED` | **開示前**に立案者が参加を取り消した |
+| `IS_RECRUITING` → `IS_FAILED` | 開始時刻が来ても成立しなかった |
+| `IS_RECRUITING` / `IS_CONFIRMED` → `IS_CANCELED` | **開示前**に立案者が参加を取り消した |
 
 - 「成立」を参加者数からの導出にしないのは、**開示後は人数が割れても成立のままにする**
   （数と状態がわざと食い違う）仕様のため（→ 判断1）
@@ -180,7 +180,7 @@ B が迷った履歴（行102・104）はそのまま残るが、画面に出る
 | 「参加」を押した | 有効な参加が無いことを確認して1行足す。成立人数に達したら `IS_CONFIRMED` にして成立を投稿 |
 | 参加を取り消した | `canceledAt` を書く。**開示前**に成立人数を割ったら `IS_FAILED` にして流れたを投稿。**開示後**は `state` を変えない（一覧から消えるだけ） |
 | 立案者が参加を取り消した | **開示前**：`IS_CANCELED` にして取り消されたを投稿（人数は関係ない。確定型を止める唯一の手段）。**開示後**：普通の取り消しと同じ（→ 判断6） |
-| 開始時刻が来た | `IS_OPEN` のままなら `IS_FAILED` にして流れたを投稿。`IS_CONFIRMED` はそのまま（開催とみなす）。**この判定は分単位のスケジューラが実行する**（画面を開いたときの判定だと、誰も開かなければ投稿されないため） |
+| 開始時刻が来た | `IS_RECRUITING` のままなら `IS_FAILED` にして流れたを投稿。`IS_CONFIRMED` はそのまま（開催とみなす）。**この判定は分単位のスケジューラが実行する**（画面を開いたときの判定だと、誰も開かなければ投稿されないため） |
 | 開始時刻の30分前が来た | **何も書き込まない**。詳細ページの表示が変わるだけ（スケジューラも不要） |
 
 ボットの投稿は、状態の変更と**切り離す**。正はあくまで状態で、投稿に失敗しても
