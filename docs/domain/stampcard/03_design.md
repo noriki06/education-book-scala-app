@@ -110,9 +110,7 @@ object UserRewardCard:
 ```scala
 case class UserRewardCardStamp(
   id:         Option[Id],          // 管理 ID（永続化前は None）
-  pId:        UserRewardCard.Id,   // 主な親（parent ID）：どのカードに押されたか（UserRewardCard と *:1）。
-                                   //   あえて cardId にせず汎用名にしている。将来 Card という別エンティティが
-                                   //   来た場合に備え、その名前を空けておくため（→ naming.md）
+  pId:        UserRewardCard.Id,   // 主な親（parent ID）：どのカードに押されたか（UserRewardCard と *:1、→ naming.md）
   shopId:     Shop.Id,             // 広い群：どの店舗での注文か（集計用。判定には使わない）
   orderId:    Order.Id,            // 狭い群：どの注文で得たか（Order と 1:1）
   updatedAt:  LocalDateTime = Now, // データ更新日
