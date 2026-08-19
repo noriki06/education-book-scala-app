@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" font-family="sans-serif" font-size="14">
+  <rect x="0" y="0" width="900" height="560" fill="#ffffff"/>
+
+  <text x="450" y="30" text-anchor="middle" font-weight="bold" fill="#1e293b">ER 図 — お店まわりのデータの繋がり</text>
+
+  <!-- ===================== udb ===================== -->
+  <rect x="30" y="60" width="280" height="160" rx="8" fill="none" stroke="#cbd5e1" stroke-dasharray="6 4"/>
+  <text x="46" y="81" font-size="11" font-weight="bold" fill="#64748b">udb（会員・認証。invite で設計済み）</text>
+
+  <!-- 会員 -->
+  <rect x="60" y="100" width="220" height="90" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+  <rect x="60" y="100" width="220" height="34" rx="6" fill="#94a3b8"/>
+  <text x="74" y="116" font-size="12" font-weight="bold" fill="#ffffff">会員</text>
+  <text x="74" y="129" font-size="9" fill="#e2e8f0">User</text>
+  <text x="268" y="116" text-anchor="end" font-size="10" fill="#ffffff">設計済み</text>
+  <text x="74" y="156" font-size="11" fill="#334155">会員 ID</text>
+  <text x="74" y="175" font-size="11" fill="#334155">表示名</text>
+
+  <!-- ===================== shop ===================== -->
+  <rect x="400" y="60" width="470" height="380" rx="8" fill="none" stroke="#cbd5e1" stroke-dasharray="6 4"/>
+  <text x="416" y="81" font-size="11" font-weight="bold" fill="#64748b">shop（お店。今回新設。記号は naming で確定）</text>
+
+  <!-- 店 -->
+  <rect x="430" y="100" width="270" height="130" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
+  <rect x="430" y="100" width="270" height="34" rx="6" fill="#16a34a"/>
+  <text x="444" y="116" font-size="12" font-weight="bold" fill="#ffffff">店</text>
+  <text x="444" y="129" font-size="9" fill="#dcfce7">Shop</text>
+  <text x="688" y="116" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
+  <text x="444" y="156" font-size="10.5" fill="#334155">店 ID / 相手側 ID（手で足した店は無し）</text>
+  <text x="444" y="175" font-size="10.5" fill="#334155">店名</text>
+  <text x="444" y="194" font-size="10.5" fill="#334155">緯度・経度（任意）</text>
+  <text x="444" y="213" font-size="10.5" fill="#334155">場所メモ（任意。手で足した店の目印）</text>
+
+  <!-- 評価 -->
+  <rect x="430" y="280" width="270" height="130" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
+  <rect x="430" y="280" width="270" height="34" rx="6" fill="#16a34a"/>
+  <text x="444" y="296" font-size="12" font-weight="bold" fill="#ffffff">評価</text>
+  <text x="444" y="309" font-size="9" fill="#dcfce7">ShopReview</text>
+  <text x="688" y="296" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
+  <text x="444" y="336" font-size="10.5" fill="#334155">評価 ID / 店 ID / 会員 ID</text>
+  <text x="444" y="355" font-size="10.5" fill="#334155">3段階（また行きたい/ふつう/いまいち）</text>
+  <text x="444" y="374" font-size="10.5" fill="#334155">時間帯（任意）/ 並んだか（任意）</text>
+  <text x="444" y="393" font-size="10.5" fill="#334155">一言（任意・記名で常時公開）</text>
+
+  <!-- 店 1 : * 評価 -->
+  <path d="M565,230 V280" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="577" y="246" text-anchor="middle" font-size="11" font-weight="bold" fill="#5b21b6">1</text>
+  <text x="577" y="274" text-anchor="middle" font-size="11" font-weight="bold" fill="#5b21b6">*</text>
+
+  <!-- 会員 1 : * 評価 -->
+  <path d="M170,190 V345 H430" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="182" y="208" text-anchor="middle" font-size="11" font-weight="bold" fill="#5b21b6">1</text>
+  <text x="418" y="337" text-anchor="middle" font-size="11" font-weight="bold" fill="#5b21b6">*</text>
+
+  <!-- 注記 -->
+  <text x="46" y="392" font-size="10" fill="#64748b">参照は shop → udb の一方向。</text>
+  <text x="46" y="408" font-size="10" fill="#64748b">event（お誘い）とは互いに参照しない。</text>
+
+  <!-- ===================== データを持たないもの ===================== -->
+  <rect x="30" y="450" width="840" height="90" rx="8" fill="#fffbeb" stroke="#d97706"/>
+  <text x="46" y="472" font-size="11" font-weight="bold" fill="#92400e">データを持たないもの（保存せず、評価の台帳から導出する）</text>
+  <text x="46" y="494" font-size="10.5" fill="#78350f">・また行きたいの人数（人数で数える。同じ人の複数評価は最新の1票）　・混雑の声（6ヶ月以内・2件以上のときだけ）</text>
+  <text x="46" y="512" font-size="10.5" fill="#78350f">・提案の2枠（また行きたいが多い店／自分がまだ評価していない店）　・時間帯フィルタの結果</text>
+  <text x="46" y="530" font-size="10.5" fill="#78350f">・店マスタの取り込みバッチは無い（店は最初の評価と同時に生まれる）</text>
+</svg>
