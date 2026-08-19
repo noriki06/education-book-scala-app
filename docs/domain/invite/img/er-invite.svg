@@ -27,8 +27,8 @@
   <text x="444" y="126" font-size="12" font-weight="bold" fill="#ffffff">イベント</text>
   <text x="444" y="139" font-size="9" fill="#dcfce7">Event</text>
   <text x="688" y="126" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
-  <text x="444" y="166" font-size="10.5" fill="#334155">イベント ID / 立案者 ID（永久に表示しない）</text>
-  <text x="444" y="185" font-size="10.5" fill="#334155">内容 / 場所</text>
+  <text x="444" y="166" font-size="10.5" fill="#334155">イベント ID / 公開用 UUID / 内容 / 場所</text>
+  <text x="444" y="185" font-size="10.5" fill="#334155">立案者 ID（永久に表示しない）</text>
   <text x="444" y="204" font-size="10.5" fill="#334155">成立人数（1 なら確定型）</text>
   <text x="444" y="223" font-size="10.5" fill="#334155">開始時刻（開催日含む）/ 開示タイミング</text>
   <text x="444" y="242" font-size="10.5" fill="#334155">状態（募集中/成立/流れた/取り消された）</text>
