@@ -21,7 +21,8 @@
 | マイグレーション | `etc/database/migration/<db>/common/*.sql` | |
 
 `<context>` は DDD の文脈。既存は `udb`（会員・認証）のみ。設計中のものは `common`（本部が管理する定義）と
-`sales`（注文まわり）。**参照は `sales` → `common` の一方向。`udb` は参照される側で、`udb` から `sales` を参照しない。**
+`sales`（注文まわり）、`event`（お誘い。→ `docs/domain/invite/`）。
+**参照は `sales` → `common`、`event` → `udb` の一方向。`udb` は参照される側で、逆流させない。**
 
 ## コマンド
 
