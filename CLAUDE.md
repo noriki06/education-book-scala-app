@@ -21,9 +21,9 @@
 | マイグレーション | `etc/database/migration/<db>/common/*.sql` | |
 
 `<context>` は DDD の文脈。既存は `udb`（会員・認証）のみ。設計中のものは `common`（本部が管理する定義）と
-`sales`（注文まわり）、`event`（お誘い。→ `docs/domain/invite/`）、お店（→ `docs/domain/lunch/`。記号は naming で確定）。
-**参照は `sales` → `common`、`event` → `udb`、お店 → `udb` の一方向。`udb` は参照される側で、逆流させない。
-`event` とお店は互いに参照しない（結合ゼロ）。**
+`sales`（注文まわり）、そして Osasoi アプリの `event`（お誘い）と `shop`（お店）（→ どちらも `docs/domain/osasoi/`）。
+**参照は `sales` → `common`、`event` → `udb`、`shop` → `udb` の一方向。`udb` は参照される側で、逆流させない。
+`event` と `shop` は互いに参照しない（結合ゼロ）。**
 
 ## コマンド
 
