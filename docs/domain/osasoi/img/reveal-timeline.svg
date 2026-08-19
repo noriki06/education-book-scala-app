@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" width="900" font-family="sans-serif" font-size="13">
+  <rect x="0" y="0" width="900" height="320" fill="#ffffff"/>
+  <text x="450" y="28" text-anchor="middle" font-weight="bold" fill="#1e293b">開示のタイムライン — 匿名の世界と記名の世界の境界</text>
+
+  <!-- ゾーン: 匿名 -->
+  <rect x="100" y="70" width="500" height="110" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-dasharray="5 3"/>
+  <text x="350" y="94" text-anchor="middle" font-weight="bold" font-size="12" fill="#1d4ed8">匿名の世界</text>
+  <text x="350" y="114" text-anchor="middle" font-size="10.5" fill="#1e40af">誰が押したか・コメントは誰にも見えない</text>
+  <text x="350" y="130" text-anchor="middle" font-size="10.5" fill="#1e40af">（成立するまでは人数も見えない。成立後は人数だけ見える）</text>
+
+  <!-- ゾーン: 記名 -->
+  <rect x="600" y="70" width="200" height="110" rx="8" fill="#fffbeb" stroke="#d97706" stroke-dasharray="5 3"/>
+  <text x="700" y="94" text-anchor="middle" font-weight="bold" font-size="12" fill="#b45309">記名の世界</text>
+  <text x="700" y="114" text-anchor="middle" font-size="10.5" fill="#92400e">参加者の一覧（名前・コメント）が</text>
+  <text x="700" y="130" text-anchor="middle" font-size="10.5" fill="#92400e">URL を開いた人なら誰でも見える。</text>
+  <text x="700" y="146" text-anchor="middle" font-size="10.5" fill="#92400e">取り消しも一覧に反映されて見える</text>
+
+  <!-- 時間軸 -->
+  <path d="M60,210 H840" fill="none" stroke="#475569" stroke-width="2"/>
+  <path d="M840,210 l-10,-5 v10 z" fill="#475569"/>
+
+  <!-- マーカー -->
+  <circle cx="100" cy="210" r="5" fill="#16a34a"/>
+  <text x="100" y="236" text-anchor="middle" font-weight="bold" fill="#334155">作成</text>
+  <text x="100" y="252" text-anchor="middle" font-size="10" fill="#64748b">募集を投稿</text>
+
+  <circle cx="380" cy="210" r="5" fill="#16a34a"/>
+  <text x="380" y="236" text-anchor="middle" font-weight="bold" fill="#334155">成立</text>
+  <text x="380" y="252" text-anchor="middle" font-size="10" fill="#64748b">人数が達した時に投稿</text>
+  <text x="380" y="266" text-anchor="middle" font-size="10" fill="#64748b">（確定型は作成と同時）</text>
+
+  <circle cx="600" cy="210" r="5" fill="#d97706"/>
+  <text x="600" y="236" text-anchor="middle" font-weight="bold" fill="#334155">開示時刻</text>
+  <text x="600" y="252" text-anchor="middle" font-size="10" fill="#64748b">開始時刻 − 開示タイミング</text>
+  <text x="600" y="266" text-anchor="middle" font-size="10" fill="#64748b">（既定30分前・変更可）</text>
+
+  <circle cx="800" cy="210" r="5" fill="#334155"/>
+  <text x="800" y="236" text-anchor="middle" font-weight="bold" fill="#334155">開始時刻</text>
+  <text x="800" y="252" text-anchor="middle" font-size="10" fill="#64748b">参加・取り消しの締切。</text>
+  <text x="800" y="266" text-anchor="middle" font-size="10" fill="#64748b">成立のままなら開催とみなす</text>
+
+  <!-- 注記 -->
+  <rect x="60" y="282" width="780" height="30" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="76" y="301" font-size="10.5" fill="#475569">・開示は「成立している」が前提（未成立なら開示時刻を過ぎても何も見えない）　・開示前に終わったイベントは、誰が押していたか永久に誰にも見えない</text>
+</svg>
