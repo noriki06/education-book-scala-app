@@ -5,7 +5,7 @@
 
   <!-- ===================== udb ===================== -->
   <rect x="30" y="60" width="250" height="190" rx="8" fill="none" stroke="#cbd5e1" stroke-dasharray="6 4"/>
-  <text x="46" y="81" font-size="11" font-weight="bold" fill="#64748b">udb（会員・認証）</text>
+  <text x="46" y="81" font-size="11" font-weight="bold" fill="#64748b">udb（会員・認証。今回新設）</text>
 
   <!-- 会員 -->
   <rect x="50" y="100" width="210" height="130" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
@@ -20,7 +20,7 @@
 
   <!-- ===================== event ===================== -->
   <rect x="330" y="60" width="400" height="400" rx="8" fill="none" stroke="#cbd5e1" stroke-dasharray="6 4"/>
-  <text x="346" y="81" font-size="11" font-weight="bold" fill="#64748b">event（誘い。今回新設するコンテキスト）</text>
+  <text x="346" y="81" font-size="11" font-weight="bold" fill="#64748b">event（誘い。今回新設）</text>
 
   <!-- イベント -->
   <rect x="360" y="100" width="340" height="150" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
@@ -46,7 +46,7 @@
 
   <!-- ===================== shop ===================== -->
   <rect x="780" y="60" width="430" height="400" rx="8" fill="none" stroke="#cbd5e1" stroke-dasharray="6 4"/>
-  <text x="796" y="81" font-size="11" font-weight="bold" fill="#64748b">shop（お店。今回新設するコンテキスト）</text>
+  <text x="796" y="81" font-size="11" font-weight="bold" fill="#64748b">shop（お店。今回新設）</text>
 
   <!-- 店 -->
   <rect x="810" y="100" width="370" height="130" rx="6" fill="#f0fdf4" stroke="#16a34a"/>
