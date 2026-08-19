@@ -47,7 +47,8 @@ MySQL は `docker compose` で起動する。JDK は Amazon Corretto 21、Node �
 - 各フィールドの右に **日本語のコメントを桁揃えで** 付ける
 - 区分値は `enum Status(val code: Short) extends EnumStatus[Short]`。
   **code はマイナスが失効・異常、プラスが進行中〜正常終了。100刻みで将来の状態を間に挟める**
-- テーブル名は `<context>_<snake_case>`（例：`udb_user`、`common_reward`、`sales_reward_card`）
+- テーブル名は `<context>_<snake_case>`（例：`udb_user`、`common_reward`、`sales_reward_card`）。
+  ただし**エンティティ名がコンテキスト名で始まる場合は重ねない**（例：`event`、`shop`。`event_event` にしない）
 
 ## 設計の判断で守っていること
 
