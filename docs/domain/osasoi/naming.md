@@ -164,6 +164,7 @@ stampcard のときと違い、**今回は業務語（発注者の語）がは�
 | 一言 | `remark` | **`comment` は不可**——`EventEntry.comment`（開示まで秘匿）と同名になると日本語2語⇔英語1語で1対1が壊れ、可視性が真逆の2概念が混ざる。`note`（内部メモに見える）も却下 |
 | 相手側 ID | `externalId` | `osmId`（サービス名を焼き込むと乗り換えで嘘になる）、`mapId`（地図の ID に見える） |
 | 場所メモ | `address` | `location`（座標に見える）、`place`（「場所」と紛れる） |
+| 場所として選んだ店 | `shopId` | `placeShopId`（`place` と並べたとき冗長）、`venueId`（`venue` は「場所」で却下済みの語） |
 
 ## アプリ名（プロダクト名）
 

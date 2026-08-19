@@ -53,8 +53,8 @@
   <text x="418" y="337" text-anchor="middle" font-size="11" font-weight="bold" fill="#5b21b6">*</text>
 
   <!-- 注記 -->
-  <text x="46" y="392" font-size="10" fill="#64748b">参照は shop → udb の一方向。</text>
-  <text x="46" y="408" font-size="10" fill="#64748b">event（お誘い）とは互いに参照しない。</text>
+  <text x="46" y="392" font-size="10" fill="#64748b">参照は shop → udb の一方向。shop は event を一切参照しない</text>
+  <text x="46" y="408" font-size="10" fill="#64748b">（event → shop の一方向参照だけがある。→ er-event.svg）。</text>
 
   <!-- ===================== データを持たないもの ===================== -->
   <rect x="30" y="450" width="840" height="90" rx="8" fill="#fffbeb" stroke="#d97706"/>
