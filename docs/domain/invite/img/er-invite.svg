@@ -30,7 +30,7 @@
   <text x="444" y="166" font-size="10.5" fill="#334155">イベント ID / 立案者 ID（永久に表示しない）</text>
   <text x="444" y="185" font-size="10.5" fill="#334155">内容 / 場所</text>
   <text x="444" y="204" font-size="10.5" fill="#334155">成立人数（1 なら確定型）</text>
-  <text x="444" y="223" font-size="10.5" fill="#334155">開始時刻（開催日を含む。開示・締切の基準）</text>
+  <text x="444" y="223" font-size="10.5" fill="#334155">開始時刻（開催日含む）/ 開示タイミング</text>
   <text x="444" y="242" font-size="10.5" fill="#334155">状態（募集中/成立/流れた/取り消された）</text>
 
   <!-- 参加 -->
@@ -40,8 +40,8 @@
   <text x="444" y="329" font-size="9" fill="#dcfce7">EventEntry</text>
   <text x="688" y="316" text-anchor="end" font-size="10" fill="#ffffff">今回追加</text>
   <text x="444" y="356" font-size="10.5" fill="#334155">参加 ID / イベント ID / 会員 ID</text>
-  <text x="444" y="375" font-size="10.5" fill="#334155">取り消し日時（None なら有効な参加。</text>
-  <text x="444" y="394" font-size="10.5" fill="#334155">　一方向。押し直しは新しい行）</text>
+  <text x="444" y="375" font-size="10.5" fill="#334155">コメント（任意。開示まで見せない）</text>
+  <text x="444" y="394" font-size="10.5" fill="#334155">取り消し日時（None なら有効。押し直しは新行）</text>
 
   <!-- 会員 1 : * イベント（立案者として） -->
   <path d="M280,155 H430" fill="none" stroke="#7c3aed" stroke-width="1.6"/>
@@ -63,7 +63,7 @@
   <rect x="30" y="440" width="840" height="100" rx="8" fill="#fffbeb" stroke="#d97706"/>
   <text x="46" y="462" font-size="11" font-weight="bold" fill="#92400e">データを持たないもの（保存せず、計算・設定で表す）</text>
   <text x="46" y="484" font-size="10.5" fill="#78350f">・参加者数 … 取り消し日時が空（None）の参加を数えて求める（立案者の行も含む）</text>
-  <text x="46" y="502" font-size="10.5" fill="#78350f">・開示済みかどうか … 現在時刻 ≥ 開始時刻 − 30分 で求める　　・確定型 … 成立人数が 1 かどうかで求める</text>
+  <text x="46" y="502" font-size="10.5" fill="#78350f">・開示済みかどうか … 現在時刻 ≥ 開始時刻 − 開示タイミング で求める　　・確定型 … 成立人数が 1 かどうかで求める</text>
   <text x="46" y="520" font-size="10.5" fill="#78350f">・告知先（Slack チャンネル） … 環境変数で持ち、モデルにしない</text>
 
   <!-- 注記 -->
